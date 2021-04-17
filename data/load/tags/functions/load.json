@@ -1,0 +1,6 @@
+{
+    "values": [
+        "#load:rx/playerdb",
+        "origins-kombo:load"
+    ]
+}

@@ -1,0 +1,13 @@
+# By: rx97
+
+# 10 Aug 2020
+
+# 
+
+#> Checks Logins. Called from #minecraft:tick
+
+
+
+scoreboard players enable @a rx.pdb.LT
+
+execute as @a run function rx.playerdb:player

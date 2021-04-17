@@ -1,0 +1,259 @@
+{
+    "type": "origins:multiple",
+    "max_combo": {
+        "type": "origins:action_over_time",
+        "interval": 1,
+        "rising_action": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:execute_command",
+                    "command": "function rx.playerdb:api/get_self"
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "data modify storage rx:io playerdb.player.data.origins-kombo.check set from storage rx:io playerdb.player.data.origins-kombo.main"
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "function rx.playerdb:api/save_self"
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "tag @s add o-k.max_combo_reached"
+                }
+            ]
+        },
+        "condition": {
+            "type": "origins:command",
+            "command": "execute if score @s o-k.combo >= @s o-k.m_combo",
+            "comparison": "==",
+            "compare_to": 1
+        }
+    },
+    "cooldown_bar": {
+        "type": "origins:resource",
+        "min": 0,
+        "max": 3,
+        "hud_render": {
+            "should_render": true,
+            "bar_index": 1,
+            "condition": {
+                "type": "origins:resource",
+                "resource": "origins-kombo:__internal_cooldown_bar",
+                "comparison": ">",
+                "compare_to": 0
+            }
+        }
+    },
+    "cooldown_start": {
+        "type": "origins:action_over_time",
+        "entity_action": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:change_resource",
+                    "resource": "origins-kombo:__internal_cooldown_bar",
+                    "change": 1
+                },
+                {
+                    "type": "origins:change_resource",
+                    "resource": "origins-kombo:__internal_timeout_bar",
+                    "change": -10
+                }
+            ]
+        },
+        "interval": 20,
+        "condition": {
+            "type": "origins:and",
+            "conditions": [
+                {
+                    "type": "origins:command",
+                    "command": "scoreboard players get @s o-k.casted",
+                    "comparison": "==",
+                    "compare_to": 1
+                },
+                {
+                    "type": "origins:resource",
+                    "resource": "origins-kombo:__internal_cooldown_bar",
+                    "comparison": "<",
+                    "compare_to": 3
+                }
+            ]
+        }
+    },
+    "cooldown_end": {
+        "type": "origins:action_over_time",
+        "interval": 1,
+        "rising_action": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:change_resource",
+                    "resource": "origins-kombo:__internal_cooldown_bar",
+                    "change": -69420
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "tag @s remove o-k.casting"
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "function origins-kombo:internal/reset_combo"
+                }
+            ]
+        },
+        "condition": {
+            "type": "origins:resource",
+            "resource": "origins-kombo:__internal_cooldown_bar",
+            "comparison": "==",
+            "compare_to": 3
+        }
+    },
+    "timeout_bar": {
+        "type": "origins:resource",
+        "min": 0,
+        "max": 2,
+        "hud_render": {
+            "should_render": true,
+            "sprite_location": "origins:textures/gui/community/spiderkolo/resource_bar_03.png",
+            "bar_index": 9,
+            "condition": {
+                "type": "origins:resource",
+                "resource": "origins-kombo:__internal_timeout_bar",
+                "comparison": ">",
+                "compare_to": 0
+            }
+        }
+    },
+    "timeout_start": {
+        "type": "origins:action_over_time",
+        "entity_action": {
+            "type": "origins:change_resource",
+            "resource": "origins-kombo:__internal_timeout_bar",
+            "change": 1
+        },
+        "interval": 20,
+        "condition": {
+            "type": "origins:and",
+            "conditions": [
+                {
+                    "type": "origins:command",
+                    "command": "execute if entity @s[tag = o-k.casting]",
+                    "comparison": "==",
+                    "compare_to": 1
+                },
+                {
+                    "type": "origins:command",
+                    "command": "scoreboard players get @s o-k.casted",
+                    "comparison": "==",
+                    "compare_to": 0
+                }
+            ]
+        }
+    },
+    "timeout_end": {
+        "type": "origins:action_over_time",
+        "interval": 1,
+        "rising_action": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:execute_command",
+                    "command": "tag @s remove o-k.casting"
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "function origins-kombo:internal/reset_combo"
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "tellraw @s {\"text\": \"Spell cast timeout!\", \"color\": \"red\"}"
+                },
+                {
+                    "type": "origins:change_resource",
+                    "resource": "origins-kombo:__internal_timeout_bar",
+                    "change": -69420
+                }
+            ]
+        },
+        "condition": {
+            "type": "origins:resource",
+            "resource": "origins-kombo:__internal_timeout_bar",
+            "comparison": "==",
+            "compare_to": 2
+        }
+    },
+    "no_spell_delay": {
+        "type": "origins:action_over_time",
+        "entity_action": {
+            "type": "origins:execute_command",
+            "command": "scoreboard players operation @s o-k.spells -= @s o-k.spells"
+        },
+        "interval": 1,
+        "condition": {
+            "type": "origins:and",
+            "conditions": [
+                {
+                    "type": "origins:command",
+                    "command": "execute if entity @s[tag = o-k.max_combo_reached]",
+                    "comparison": "==",
+                    "compare_to": 1
+                },
+                {
+                    "type": "origins:command",
+                    "command": "scoreboard players get @s o-k.casted",
+                    "comparison": "==",
+                    "compare_to": 0
+                },
+                {
+                    "type": "origins:command",
+                    "command": "scoreboard players get @s o-k.spells",
+                    "comparison": ">",
+                    "compare_to": 0
+                }
+            ]
+        }
+    },
+    "no_spell_apply": {
+        "type": "origins:action_over_time",
+        "interval": 1,
+        "rising_action": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:execute_command",
+                    "command": "tellraw @s {\"text\": \"Cannot cast invalid spell!\", \"color\": \"red\"}"
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "function origins-kombo:internal/reset_combo"
+                }
+            ]
+        },
+        "condition": {
+            "type": "origins:and",
+            "conditions": [
+                {
+                    "type": "origins:command",
+                    "command": "execute if entity @s[tag = o-k.max_combo_reached]",
+                    "comparison": "==",
+                    "compare_to": 1
+                },
+                {
+                    "type": "origins:command",
+                    "command": "scoreboard players get @s o-k.casted",
+                    "comparison": "==",
+                    "compare_to": 0
+                },
+                {
+                    "type": "origins:command",
+                    "command": "scoreboard players get @s o-k.spells",
+                    "comparison": "==",
+                    "compare_to": 0
+                }
+            ]
+        }
+    },
+    "hidden": true
+}
