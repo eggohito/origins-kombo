@@ -9,15 +9,32 @@
             "compare_to": 1
         },
         "if_action": {
-            "type": "origins:execute_command",
-            "command": "tag @s add o-k.casting"
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:execute_command",
+                    "command": "tag @s add o-k.casting"
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "title @s actionbar {\"text\": \"\"}"
+                },
+                {
+                    "type": "origins:delay",
+                    "action": {
+                        "type": "origins:execute_command",
+                        "command": "title @s actionbar {\"text\": \"+ KOMBO MODE +\", \"color\": \"green\", \"bold\": true}"
+                    },
+                    "ticks": 2
+                }
+            ]
         },
         "else_action": {
             "type": "origins:and",
             "actions": [
                 {
                     "type": "origins:change_resource",
-                    "resource": "origins-kombo:__internal_timeout_bar",
+                    "resource": "origins-kombo:__internal_timeout_timer",
                     "change": -69420
                 },
                 {

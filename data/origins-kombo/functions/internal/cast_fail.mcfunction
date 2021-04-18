@@ -8,9 +8,9 @@
 #
 #   Add a score to the player
 #
-#   - Used for delaying the 'no spell' function
+#   - Used for delaying the 'no kombo' function
 #
-scoreboard players add @s o-k.spells 1
+scoreboard players add @s o-ks 1
 
 
 

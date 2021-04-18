@@ -12,7 +12,7 @@
 #
 scoreboard objectives add o-k.m_combo dummy
 
-scoreboard objectives add o-k.spells dummy
+scoreboard objectives add o-ks dummy
 
 scoreboard objectives add o-k.casted dummy
 

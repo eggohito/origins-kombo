@@ -16,7 +16,7 @@ tag @s remove o-k.max_combo_reached
 #
 scoreboard players set @s o-k.casted 0
 
-scoreboard players set @s o-k.spells 0
+scoreboard players set @s o-ks 0
 
 scoreboard players set @s o-k.combo 0
 
@@ -27,5 +27,7 @@ scoreboard players set @s o-k.combo 0
 function rx.playerdb:api/get_self
 
 data remove storage rx:io playerdb.player.data.origins-kombo.main
+
+data remove storage rx:io playerdb.player.data.origins-kombo.check
 
 function rx.playerdb:api/save_self

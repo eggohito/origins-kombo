@@ -21,3 +21,11 @@ function rx.playerdb:api/get_self
 data modify storage rx:io playerdb.player.data.origins-kombo.main append value "key.pick_item"
 
 function rx.playerdb:api/save_self
+
+
+#
+#   Run a function tag
+#
+#   - Can be used as an indicator for the key, etc.
+#
+function #origins-kombo:key/pick_item

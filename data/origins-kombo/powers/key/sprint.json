@@ -5,7 +5,7 @@
         "actions": [
             {
                 "type": "origins:change_resource",
-                "resource": "origins-kombo:__internal_timeout_bar",
+                "resource": "origins-kombo:__internal_timeout_timer",
                 "change": -69420
             },
             {
