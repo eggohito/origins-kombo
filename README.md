@@ -5,6 +5,13 @@ This datapack uses [PlayerDB](https://github.com/rx-modules/PlayerDB) so that mu
 <br/>
 
 # How to use:
+The 'kombo' (key combo) system has some adjustable per player-based variables, which you can set to however you like:
+<br>
+
+* `%max_combo` - score holder, stored in the `o-k.main` objective. Try not to set the score of this variable to 0 or less! The default value is 4.
+* The score of each player in the `o-k.m_combo` objective - used for determining the max combinations the player can do in their KOMBO MODE. Try not to set the score of the player in this objective to 0 or less as well! The default value matches `%max_combo`'s value
+
+
 <ol>
 <details>
 <summary><b>Applying the key combo system</b></summary>
