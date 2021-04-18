@@ -1,7 +1,7 @@
 # Key Combos (Origins)
 A datapack that can activate a power depending on the power's set key pattern.
 <br>
-This datapack uses [PlayerDB](https://github.com/rx-modules/PlayerDB) so that multiple players can cast spells at the same time without conflicting with one another.
+This datapack uses [PlayerDB](https://github.com/rx-modules/PlayerDB) so that multiple players can perform 'kombos' at the same time without conflicting with one another.
 <br/>
 
 # How to use:
@@ -23,7 +23,7 @@ The example origin that'll be provided will be named "Wizard", and this is how i
 ```json
 {
     "name": "Wizard",
-    "description": "Wizards can cast a certain spell depending on a key pattern",
+    "description": "Wizards can activate a certain power depending on a key combo pattern.",
     "icon": {
         "item": "origins:orb_of_origin"
     },
@@ -39,7 +39,7 @@ The example origin that'll be provided will be named "Wizard", and this is how i
 <ol>
 <details>
 <summary><b>Registering a key or multiple keys</b></summary>
-In order to cast a <i>"spell"</i>, you must first register at least one key into the origin. Registering a key should be as simple as adding a power to your origin. These pre-made powers are used for appending a string in the storage entry of the player added by PlayerDB, resulting in a static pattern.
+In order to perform a kombo, you must first register at least one key into the origin. Registering a key should be as simple as adding a power to your origin. These pre-made powers are used for appending a string in the storage entry of the player added by PlayerDB, resulting in a static pattern.
 <br>
 <br>
 
@@ -143,7 +143,7 @@ We would then reference the example kombo in the example origin's <code>"powers"
 ```json
 {
     "name": "Wizard",
-    "description": "Wizards can cast a certain spell depending on a key pattern",
+    "description": "Wizards can activate a certain power depending on a key combo pattern.",
     "icon": {
         "item": "origins:orb_of_origin"
     },
@@ -158,7 +158,7 @@ We would then reference the example kombo in the example origin's <code>"powers"
         "origins-kombo:key/right",
         "origins-kombo:key/jump",
         "origins-kombo:key/sneak",
-
+        
         "kombo-example:simple_kombo"
     ]
 }
