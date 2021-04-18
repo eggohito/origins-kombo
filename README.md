@@ -9,6 +9,8 @@ This datapack uses [PlayerDB](https://github.com/rx-modules/PlayerDB) so that mu
 <details>
 <summary><b>Applying the key combo system</b></summary>
 We would first need to add the <code>origins-kombo:__internal</code> power into the <code>"powers"</code> list of an origin for the whole key combo system to work. This power is used for checking if the player has reached its max combo, reached its cast timeout limit, etc.
+<br>
+<br>
 
 The example origin that'll be provided will be named "Wizard", and this is how its <code>"powers"</code> list would look like in order to use the key combo system:
 ```json
@@ -31,6 +33,7 @@ The example origin that'll be provided will be named "Wizard", and this is how i
 <details>
 <summary><b>Registering a key/multiple keys</b></summary>
 In order to cast a <i>"spell"</i>, you must first register at least one key into the origin. Registering a key should be as simple as adding a power to your origin. These pre-made powers are used for appending a string in the storage entry of the player added by PlayerDB, resulting in a static pattern.
+<br>
 <br>
 
 In the example origin, we'll be adding multiple keys: primary, secondary, forward, back, left, right, jump, and sneak. This is how it would look like:
@@ -74,6 +77,7 @@ Using the <code>origins:if_else</code> action, we can run different actions depe
 <br>
 
 We'll be comparing the value to 0 to check if the command is run successfully or not. If the command is ran successfully, we'll be running the <code>origins-kombo:internal/cast_fail</code> function to indicate that the casting for the spell has failed. If the command is ran unsuccessfully, we'll run the <code>origins-kombo:internal/cast_success</code> function to indicate that the casting for the spell has succeed, you can also run any kind of action you wish just after running the said function.
+<br>
 <br>
 
 Here's an example spell that will run a <code>/tellraw</code> command if one would press the primary ability button 4 times: <br>
