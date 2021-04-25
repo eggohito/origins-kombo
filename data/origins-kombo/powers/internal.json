@@ -1,5 +1,63 @@
 {
     "type": "origins:multiple",
+    "max_combo_reached": {
+        "type": "origins:resource",
+        "min": 0,
+        "max": 1,
+        "hud_render": {
+            "should_render": false
+        }
+    },
+    "casting": {
+        "type": "origins:resource",
+        "min": 0,
+        "max": 1,
+        "hud_render": {
+            "should_render": false
+        }
+    },
+    "casted": {
+        "type": "origins:resource",
+        "min": 0,
+        "max": 1,
+        "hud_render": {
+            "should_render": false
+        }
+    },
+    "kombos": {
+        "type": "origins:resource",
+        "min": -2147483648,
+        "max": 2147483647,
+        "start_value": 0,
+        "hud_render": {
+            "should_render": false
+        }
+    },
+    "obj_to_res": {
+        "type": "origins:action_over_time",
+        "entity_action": {
+            "type": "origins:and",
+            "actions": [
+                {
+                    "type": "origins:execute_command",
+                    "command": "resource operation @s origins-kombo:internal_max_combo_reached = @s o-k.max_combo.r"
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "resource operation @s origins-kombo:internal_casting = @s o-k.casting"
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "resource operation @s origins-kombo:internal_casted = @s o-k.casted"
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "resource operation @s origins-kombo:internal_kombos = @s o-k.kombos"
+                }
+            ]
+        },
+        "interval": 1
+    },
     "max_combo": {
         "type": "origins:action_over_time",
         "interval": 1,
@@ -12,7 +70,7 @@
                 },
                 {
                     "type": "origins:execute_command",
-                    "command": "data modify storage rx:io playerdb.player.data.origins-kombo.check set from storage rx:io playerdb.player.data.origins-kombo.main"
+                    "command": "data modify storage rx:io playerdb.player.data.origins-kombo.check set from storage rx:io playerdb.player.data.origins-kombo.input"
                 },
                 {
                     "type": "origins:execute_command",
@@ -20,66 +78,47 @@
                 },
                 {
                     "type": "origins:execute_command",
-                    "command": "tag @s add o-k.max_combo_reached"
+                    "command": "scoreboard players set @s o-k.max_combo.r 1"
                 }
             ]
         },
         "condition": {
             "type": "origins:command",
-            "command": "execute if score @s o-k.combo >= @s o-k.m_combo",
+            "command": "execute if score @s o-k.combo >= @s o-k.max_combo",
             "comparison": "==",
             "compare_to": 1
         }
     },
-    "cooldown_timer": {
-        "type": "origins:resource",
-        "min": 0,
-        "max": 3,
+    "cooldown": {
+        "type": "origins:cooldown",
+        "cooldown": 100,
         "hud_render": {
             "should_render": true,
-            "bar_index": 1,
-            "condition": {
-                "type": "origins:resource",
-                "resource": "origins-kombo:__internal_cooldown_timer",
-                "comparison": ">",
-                "compare_to": 0
-            }
+            "bar_index": 1
         }
     },
     "cooldown_start": {
         "type": "origins:action_over_time",
-        "entity_action": {
+        "interval": 1,
+        "rising_action": {
             "type": "origins:and",
             "actions": [
                 {
-                    "type": "origins:change_resource",
-                    "resource": "origins-kombo:__internal_cooldown_timer",
-                    "change": 1
+                    "type": "origins:trigger_cooldown",
+                    "power": "*:*_cooldown"
                 },
                 {
                     "type": "origins:change_resource",
-                    "resource": "origins-kombo:__internal_timeout_timer",
-                    "change": -10
+                    "resource": "*:*_timeout",
+                    "change": -69420
                 }
             ]
         },
-        "interval": 20,
         "condition": {
-            "type": "origins:and",
-            "conditions": [
-                {
-                    "type": "origins:command",
-                    "command": "scoreboard players get @s o-k.casted",
-                    "comparison": "==",
-                    "compare_to": 1
-                },
-                {
-                    "type": "origins:resource",
-                    "resource": "origins-kombo:__internal_cooldown_timer",
-                    "comparison": "<",
-                    "compare_to": 3
-                }
-            ]
+            "type": "origins:resource",
+            "resource": "*:*_casted",
+            "comparison": "==",
+            "compare_to": 1
         }
     },
     "cooldown_end": {
@@ -89,82 +128,58 @@
             "type": "origins:and",
             "actions": [
                 {
-                    "type": "origins:change_resource",
-                    "resource": "origins-kombo:__internal_cooldown_timer",
-                    "change": -69420
+                    "type": "origins:execute_command",
+                    "command": "scoreboard players set @s o-k.casting 0"
                 },
                 {
                     "type": "origins:execute_command",
-                    "command": "tag @s remove o-k.casting"
-                },
-                {
-                    "type": "origins:execute_command",
-                    "command": "function origins-kombo:internal/reset_combo"
+                    "command": "function origins-kombo:internal/reset"
                 }
             ]
         },
         "condition": {
-            "type": "origins:resource",
-            "resource": "origins-kombo:__internal_cooldown_timer",
-            "comparison": "==",
-            "compare_to": 3
+            "type": "origins:and",
+            "conditions": [
+                {
+                    "type": "origins:resource",
+                    "resource": "*:*_casted",
+                    "comparison": "==",
+                    "compare_to": 1
+                },
+                {
+                    "type": "origins:resource",
+                    "resource": "*:*_cooldown",
+                    "comparison": "==",
+                    "compare_to": 1
+                }
+            ]
         }
     },
-    "timeout_timer": {
+    "timeout": {
         "type": "origins:resource",
         "min": 0,
-        "max": 2,
+        "max": 40,
         "hud_render": {
             "should_render": true,
             "sprite_location": "origins:textures/gui/community/spiderkolo/resource_bar_03.png",
             "bar_index": 9,
             "condition": {
                 "type": "origins:resource",
-                "resource": "origins-kombo:__internal_timeout_timer",
+                "resource": "*:*_timeout",
                 "comparison": ">",
                 "compare_to": 0
             }
-        }
-    },
-    "timeout_start": {
-        "type": "origins:action_over_time",
-        "entity_action": {
-            "type": "origins:change_resource",
-            "resource": "origins-kombo:__internal_timeout_timer",
-            "change": 1
         },
-        "interval": 20,
-        "condition": {
-            "type": "origins:and",
-            "conditions": [
-                {
-                    "type": "origins:command",
-                    "command": "execute if entity @s[tag = o-k.casting]",
-                    "comparison": "==",
-                    "compare_to": 1
-                },
-                {
-                    "type": "origins:command",
-                    "command": "scoreboard players get @s o-k.casted",
-                    "comparison": "==",
-                    "compare_to": 0
-                }
-            ]
-        }
-    },
-    "timeout_end": {
-        "type": "origins:action_over_time",
-        "interval": 1,
-        "rising_action": {
+        "max_action": {
             "type": "origins:and",
             "actions": [
                 {
                     "type": "origins:execute_command",
-                    "command": "tag @s remove o-k.casting"
+                    "command": "scoreboard players set @s o-k.casting 0"
                 },
                 {
                     "type": "origins:execute_command",
-                    "command": "function origins-kombo:internal/reset_combo"
+                    "command": "function origins-kombo:internal/reset"
                 },
                 {
                     "type": "origins:execute_command",
@@ -180,43 +195,63 @@
                 },
                 {
                     "type": "origins:change_resource",
-                    "resource": "origins-kombo:__internal_timeout_timer",
+                    "resource": "*:*_timeout",
                     "change": -69420
                 }
             ]
-        },
-        "condition": {
-            "type": "origins:resource",
-            "resource": "origins-kombo:__internal_timeout_timer",
-            "comparison": "==",
-            "compare_to": 2
         }
     },
-    "no_kombo_delay": {
+    "timeout_start": {
         "type": "origins:action_over_time",
         "entity_action": {
-            "type": "origins:execute_command",
-            "command": "scoreboard players operation @s o-ks -= @s o-ks"
+            "type": "origins:change_resource",
+            "resource": "*:*_timeout",
+            "change": 1
         },
         "interval": 1,
         "condition": {
             "type": "origins:and",
             "conditions": [
                 {
-                    "type": "origins:command",
-                    "command": "execute if entity @s[tag = o-k.max_combo_reached]",
+                    "type": "origins:resource",
+                    "resource": "*:*_casting",
                     "comparison": "==",
                     "compare_to": 1
                 },
                 {
-                    "type": "origins:command",
-                    "command": "scoreboard players get @s o-k.casted",
+                    "type": "origins:resource",
+                    "resource": "*:*_casted",
+                    "comparison": "==",
+                    "compare_to": 0
+                }
+            ]
+        }
+    },
+    "no_kombo_delay": {
+        "type": "origins:action_over_time",
+        "entity_action": {
+            "type": "origins:execute_command",
+            "command": "scoreboard players operation @s o-k.kombos -= @s o-k.kombos"
+        },
+        "interval": 1,
+        "condition": {
+            "type": "origins:and",
+            "conditions": [
+                {
+                    "type": "origins:resource",
+                    "resource": "*:*_max_combo_reached",
+                    "comparison": "==",
+                    "compare_to": 1
+                },
+                {
+                    "type": "origins:resource",
+                    "resource": "*:*_casted",
                     "comparison": "==",
                     "compare_to": 0
                 },
                 {
-                    "type": "origins:command",
-                    "command": "scoreboard players get @s o-ks",
+                    "type": "origins:resource",
+                    "resource": "*:*_kombos",
                     "comparison": ">",
                     "compare_to": 0
                 }
@@ -243,7 +278,7 @@
                 },
                 {
                     "type": "origins:execute_command",
-                    "command": "function origins-kombo:internal/reset_combo"
+                    "command": "function origins-kombo:internal/reset"
                 }
             ]
         },
@@ -251,20 +286,20 @@
             "type": "origins:and",
             "conditions": [
                 {
-                    "type": "origins:command",
-                    "command": "execute if entity @s[tag = o-k.max_combo_reached]",
+                    "type": "origins:resource",
+                    "resource": "*:*_max_combo_reached",
                     "comparison": "==",
                     "compare_to": 1
                 },
                 {
-                    "type": "origins:command",
-                    "command": "scoreboard players get @s o-k.casted",
+                    "type": "origins:resource",
+                    "resource": "*:*_casted",
                     "comparison": "==",
                     "compare_to": 0
                 },
                 {
-                    "type": "origins:command",
-                    "command": "scoreboard players get @s o-ks",
+                    "type": "origins:resource",
+                    "resource": "*:*_kombos",
                     "comparison": "==",
                     "compare_to": 0
                 }
@@ -278,11 +313,11 @@
             "actions": [
                 {
                     "type": "origins:execute_command",
-                    "command": "tag @s remove o-k.casting"
+                    "command": "scoreboard players set @s o-k.casting 0"
                 },
                 {
                     "type": "origins:execute_command",
-                    "command": "function origins-kombo:internal/reset_combo"
+                    "command": "function origins-kombo:internal/reset"
                 }
             ]
         }
@@ -303,7 +338,7 @@
                         "actions": [
                             {
                                 "type": "origins:execute_command",
-                                "command": "tag @s add o-k.casting"
+                                "command": "scoreboard players set @s o-k.casting 1"
                             },
                             {
                                 "type": "origins:execute_command",
@@ -326,16 +361,16 @@
             "type": "origins:and",
             "conditions": [
                 {
-                    "type": "origins:command",
-                    "command": "scoreboard players get @s o-k.casted",
+                    "type": "origins:resource",
+                    "resource": "*:*_casted",
                     "comparison": "==",
                     "compare_to": 0
                 },
                 {
-                    "type": "origins:command",
-                    "command": "execute unless entity @s[tag = o-k.casting]",
+                    "type": "origins:resource",
+                    "resource": "*:*_casting",
                     "comparison": "==",
-                    "compare_to": 1
+                    "compare_to": 0
                 }
             ]
         }
@@ -356,7 +391,7 @@
                         "actions": [
                             {
                                 "type": "origins:execute_command",
-                                "command": "tag @s add o-k.casting"
+                                "command": "scoreboard players set @s o-k.casting 1"
                             },
                             {
                                 "type": "origins:execute_command",
@@ -379,16 +414,16 @@
             "type": "origins:and",
             "conditions": [
                 {
-                    "type": "origins:command",
-                    "command": "scoreboard players get @s o-k.casted",
+                    "type": "origins:resource",
+                    "resource": "*:*_casted",
                     "comparison": "==",
                     "compare_to": 0
                 },
                 {
-                    "type": "origins:command",
-                    "command": "execute unless entity @s[tag = o-k.casting]",
+                    "type": "origins:resource",
+                    "resource": "*:*_casting",
                     "comparison": "==",
-                    "compare_to": 1
+                    "compare_to": 0
                 }
             ]
         }

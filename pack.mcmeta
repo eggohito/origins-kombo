@@ -1,6 +1,10 @@
 {
     "pack": {
         "pack_format": 6,
-        "description": "A datapack by eggohito#9048"
+        "version": "v1.0.0",
+        "authors": [
+            "eggohito"
+        ],
+        "description": "A datapack library that can activate powers depending on the power's set key combination pattern."
     }
 }

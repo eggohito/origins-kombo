@@ -1,6 +1,8 @@
 #> origins-kombo:internal/cast_fail
 #
-#   > If the current pattern doesn't match any
+#   > Run this function of the current kombo doesn't match any set pattern
+#
+#   - Must be referenced in your own 'kombos'
 #
 #@internal
 
@@ -10,7 +12,7 @@
 #
 #   - Used for delaying the 'no kombo' function
 #
-scoreboard players add @s o-ks 1
+scoreboard players add @s o-k.kombos 1
 
 
 
@@ -19,6 +21,6 @@ scoreboard players add @s o-ks 1
 #
 function rx.playerdb:api/get_self
 
-data modify storage rx:io playerdb.player.data.origins-kombo.check set from storage rx:io playerdb.player.data.origins-kombo.main
+data modify storage rx:io playerdb.player.data.origins-kombo.check set from storage rx:io playerdb.player.data.origins-kombo.input
 
 function rx.playerdb:api/save_self

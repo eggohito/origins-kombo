@@ -2,7 +2,11 @@
 #
 #   > The toggle_perspective button
 #
-#$within origins/power origins-kombo:key/toggle_perspective
+#   - Referenced in the **`origins-kombo:key\toggle_perspective`** power
+#
+#     (`data\origins-kombo\powers\key\toggle_perspective.json`)
+#
+#@private
 
 
 #
@@ -18,14 +22,12 @@ scoreboard players add @s o-k.combo 1
 #
 function rx.playerdb:api/get_self
 
-data modify storage rx:io playerdb.player.data.origins-kombo.main append value "key.toggle_perspective"
+data modify storage rx:io playerdb.player.data.origins-kombo.input append value "key.toggle_perspective"
 
 function rx.playerdb:api/save_self
 
 
 #
-#   Run a function tag
-#
-#   - Can be used as an indicator for the key, etc.
+#   Reference a function tag to run additional functions inside it
 #
 function #origins-kombo:key/toggle_perspective

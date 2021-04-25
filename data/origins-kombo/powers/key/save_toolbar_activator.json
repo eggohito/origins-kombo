@@ -1,31 +1,18 @@
 {
     "type": "origins:active_self",
     "entity_action": {
-        "type": "origins:if_else",
-        "condition": {
-            "type": "origins:command",
-            "command": "execute unless entity @s[tag = o-k.casting]",
-            "comparison": "==",
-            "compare_to": 1
-        },
-        "if_action": {
-            "type": "origins:execute_command",
-            "command": "tag @s add o-k.casting"
-        },
-        "else_action": {
-            "type": "origins:and",
-            "actions": [
-                {
-                    "type": "origins:change_resource",
-                    "resource": "origins-kombo:__internal_timeout_timer",
-                    "change": -69420
-                },
-                {
-                    "type": "origins:execute_command",
-                    "command": "function origins-kombo:key/save_toolbar_activator"
-                }
-            ]
-        }
+        "type": "origins:and",
+        "actions": [
+            {
+                "type": "origins:change_resource",
+                "resource": "*:internal_timeout",
+                "change": -69420
+            },
+            {
+                "type": "origins:execute_command",
+                "command": "function origins-kombo:key/save_toolbar_activator"
+            }
+        ]
     },
     "cooldown": 1,
     "hud_render": {
@@ -38,17 +25,18 @@
         "type": "origins:and",
         "conditions": [
             {
-                "type": "origins:command",
-                "command": "execute if entity @s[tag = o-k.casting]",
+                "type": "origins:resource",
+                "resource": "*:internal_casting",
                 "comparison": "==",
                 "compare_to": 1
             },
             {
-                "type": "origins:command",
-                "command": "scoreboard players get @s o-k.casted",
+                "type": "origins:resource",
+                "resource": "*:internal_casted",
                 "comparison": "==",
                 "compare_to": 0
             }
         ]
-    }
+    },
+    "hidden": true
 }

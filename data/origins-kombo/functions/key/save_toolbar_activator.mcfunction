@@ -2,7 +2,11 @@
 #
 #   > The save_toolbar_activator button
 #
-#$within origins/power origins-kombo:key/save_toolbar_activator
+#   - Referenced in the **`origins-kombo:key\save_toolbar_activator`** power
+#
+#     (`data\origins-kombo\powers\key\save_toolbar_activator.json`)
+#
+#@private
 
 
 #
@@ -18,14 +22,12 @@ scoreboard players add @s o-k.combo 1
 #
 function rx.playerdb:api/get_self
 
-data modify storage rx:io playerdb.player.data.origins-kombo.main append value "key.save_toolbar_activator"
+data modify storage rx:io playerdb.player.data.origins-kombo.input append value "key.save_toolbar_activator"
 
 function rx.playerdb:api/save_self
 
 
 #
-#   Run a function tag
-#
-#   - Can be used as an indicator for the key, etc.
+#   Reference a function tag to run additional functions inside it
 #
 function #origins-kombo:key/save_toolbar_activator

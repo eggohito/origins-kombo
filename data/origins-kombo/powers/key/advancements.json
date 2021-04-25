@@ -1,11 +1,11 @@
 {
     "type": "origins:active_self",
-    "entity_action":{
+    "entity_action": {
         "type": "origins:and",
         "actions": [
             {
                 "type": "origins:change_resource",
-                "resource": "origins-kombo:__internal_timeout_timer",
+                "resource": "*:internal_timeout",
                 "change": -69420
             },
             {
@@ -25,17 +25,18 @@
         "type": "origins:and",
         "conditions": [
             {
-                "type": "origins:command",
-                "command": "execute if entity @s[tag = o-k.casting]",
+                "type": "origins:resource",
+                "resource": "*:internal_casting",
                 "comparison": "==",
                 "compare_to": 1
             },
             {
-                "type": "origins:command",
-                "command": "scoreboard players get @s o-k.casted",
+                "type": "origins:resource",
+                "resource": "*:internal_casted",
                 "comparison": "==",
                 "compare_to": 0
             }
         ]
-    }
+    },
+    "hidden": true
 }

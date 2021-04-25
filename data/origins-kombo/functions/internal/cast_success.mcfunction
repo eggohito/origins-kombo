@@ -1,16 +1,18 @@
 #> origins-kombo:internal/cast_success
 #
-#   > If the current pattern has matched with a spell
+#   > Run this function if the current kombo matches the set pattern
+#
+#   - Must be referenced in your own 'kombos'
 #
 #@internal
 
 
 #
-#   Remove the `o-k.casting` and `o-k.max_combo_reached` tags
+#   Reset the scores of the player in the `o-k.casting` and `o-k.max_combo.r` objectives
 #
-tag @s remove o-k.casting
+scoreboard players set @s o-k.casting 0
 
-tag @s remove o-k.max_combo_reached
+scoreboard players set @s o-k.max_combo.r 0
 
 
 #

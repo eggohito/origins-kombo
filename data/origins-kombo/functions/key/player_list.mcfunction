@@ -1,8 +1,12 @@
 #> origins-kombo:key/player_list
 #
-#   > The playerlist button
+#   > The player_list button
 #
-#$within origins/power origins-kombo:key/playerlist
+#   - Referenced in the **`origins-kombo:key\player_list`** power
+#
+#     (`data\origins-kombo\powers\key\player_list.json`)
+#
+#@private
 
 
 #
@@ -18,14 +22,12 @@ scoreboard players add @s o-k.combo 1
 #
 function rx.playerdb:api/get_self
 
-data modify storage rx:io playerdb.player.data.origins-kombo.main append value "key.player_list"
+data modify storage rx:io playerdb.player.data.origins-kombo.input append value "key.player_list"
 
 function rx.playerdb:api/save_self
 
 
 #
-#   Run a function tag
-#
-#   - Can be used as an indicator for the key, etc.
+#   Reference a function tag to run additional functions inside it
 #
 function #origins-kombo:key/player_list

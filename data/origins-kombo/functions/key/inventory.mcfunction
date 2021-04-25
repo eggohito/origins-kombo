@@ -1,8 +1,12 @@
 #> origins-kombo:key/inventory
 #
-#   > The primary ability button
+#   > The inventory button
 #
-#$within origins/power origins-kombo:key/inventory
+#   - Referenced in the **`origins-kombo:key\inventory`** power
+#
+#     (`data\origins-kombo\powers\key\inventory.json`)
+#
+#@private
 
 
 #
@@ -18,14 +22,12 @@ scoreboard players add @s o-k.combo 1
 #
 function rx.playerdb:api/get_self
 
-data modify storage rx:io playerdb.player.data.origins-kombo.main append value "key.inventory"
+data modify storage rx:io playerdb.player.data.origins-kombo.input append value "key.inventory"
 
 function rx.playerdb:api/save_self
 
 
 #
-#   Run a function tag
-#
-#   - Can be used as an indicator for the key, etc.
+#   Reference a function tag to run additional functions inside it
 #
 function #origins-kombo:key/inventory
