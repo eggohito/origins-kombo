@@ -8,8 +8,11 @@ This datapack uses [PlayerDB](https://github.com/rx-modules/PlayerDB) so that mu
 This datapack also uses [Lantern Load](https://github.com/LanternMC/Load) to ensure that this datapack loads before your datapack. You can detect if this library is loaded by checking the score of the `#origins-kombo` score holder in the `load` objective. 
 <br>
 
-To ensure that this library loads before your datapack, you would add your load function inside the `#load:post_load` function tag (`data\load\tags\functions\post_load.json`), like so:
-<br>
+
+
+<ol>
+<details>
+<summary>To ensure that this library loads before your datapack, you would add your load function inside the <code>#load:post_load</code> function tag (<code>data\load\tags\functions\post_load.json</code>) after copying the contents from the Lantern Load repository, like so:</summary>
 
 ```json
 {
@@ -19,7 +22,8 @@ To ensure that this library loads before your datapack, you would add your load 
 }
 ```
 
-<br>
+</details>
+</ol>
 <br>
 
 # How to use:
@@ -27,8 +31,10 @@ The 'kombo' (key combo) system has some adjustable per player-based variables, w
 <br>
 
 * `%max_combo` - score holder, stored in the `o-k.max_combo` objective. Try not to set the score of this variable to 0 or less! The default value is 4.
-* The score of each player in the `o-k.max_combo` objective - used for determining the max combinations the player can do while in their KOMBO MODE. Try not to set the score of the player in this objective to 0 or less as well! The default value matches `%max_combo`'s value, which is set only once.
 
+* The score of each player in the `o-k.max_combo` objective - used for determining the max combinations the player can do while in their KOMBO MODE. Try not to set the score of the player in this objective to 0 or less as well! The default value matches `%max_combo`'s value, which is set only once.
+<br>
+<br>
 
 <ol>
 <details>
@@ -37,7 +43,10 @@ We would first need to add the <code>origins-kombo:internal</code> power into th
 <br>
 <br>
 
-Here's an example origin; and this is how its <code>"powers"</code> list would look like in order to use the key combo system:
+<ol>
+<details>
+<summary>Here's an example origin; and this is how its <code>"powers"</code> list would look like in order to use the key combo system:</summary>
+
 ```json
 {
     "powers": [
@@ -56,18 +65,25 @@ Here's an example origin; and this is how its <code>"powers"</code> list would l
 
 </details>
 </ol>
+<br>
+
+</details>
+</ol>
 
 <ol>
 <details>
 <summary><b>Registering a key or multiple keys</b></summary>
-In order to perform a kombo, you must first register at least one key into the origin.
+In order to perform a kombo, you must first register at least two keys into the origin.
+<br>
 <br>
 
 Registering a key should be as simple as adding a power to your origin. These pre-made powers are used for appending a string in the storage entry of the player added by PlayerDB, which is then used for checking for a certain key combination pattern.
 <br>
-<br>
 
-In the example origin, we'll be registering multiple keys: the primary, and the secondary ability keys. This is how the `powers` list of the origin would look like:
+
+<ol>
+<details>
+<summary>In the example origin, we'll be registering multiple keys: the primary, and the secondary ability keys. This is how the <code>"powers"</code> list of the origin would look like:</summary>
 
 ```json
 {
@@ -90,29 +106,37 @@ In the example origin, we'll be registering multiple keys: the primary, and the 
 
 </details>
 </ol>
+<br>
+
+
+</details>
+</ol>
 
 <ol>
 <details>
-<summary><b>Adding a "simple" kombo</b></summary>
-To add a "simple" kombo, we must first get the input data of the player in their storage entry added by PlayerDB. 
+<summary><b>Adding a your own kombo</b></summary>
+To add a kombo, we must first get the input data of the player in their storage entry added by PlayerDB. 
 <br>
 <br>
 
 We can do so by running the <code>rx.playerdb:api/get_self</code> function. Afterwards, we would check for the pattern by setting the <code>playerdb.player.data.origins-kombo.check</code> NBT path in the `rx:io` storage as the set pattern we wish to use. 
 <br>
 
-Using the <code>origins:if_else</code> meta action, we can run different actions depending on the result. We'll then use the <code>origins:command</code> condition type to modify the said target NBT path in the said storage, which would store the result of the ran command which we can then use to compare it to a number. 
+Using the <code>origins:if_else</code> meta action, we can run different entity actions depending on the result. We'll then use the <code>origins:command</code> entity condition type to modify the said target NBT path in the said storage, which would store the result of the ran command which we can then use to compare it to a number. 
 <br>
 
-We'll be comparing the stored result to 0 to check if the command is run successfully or not. If the command is ran successfully, we'll be running the <code>origins-kombo:internal/cast_fail</code> function to indicate that the casting for the kombo has failed. If the command is ran unsuccessfully, we'll run the <code>origins-kombo:internal/cast_success</code> function to indicate that the casting for the kombo has succeed, you can also run any kind of action you wish just after running the said function.
+We'll be comparing the stored result to 0 to check if the command is run successfully or not. If the command is ran successfully, we'll run the <code>origins-kombo:internal/cast_fail</code> function to indicate that the casting for the kombo has failed. If the command is ran unsuccessfully, we'll run the <code>origins-kombo:internal/cast_success</code> function to indicate that the casting for the kombo has succeed, you can also run any kind of entity action you wish just after running the said function as long as its inside the `"actions"` list of the `origins:and` meta action inside the `"if_action"` object, like `origins:trigger_cooldown` for example.
 <br>
 
-The reason why the order is the opposite is due to how setting an already existing value works. If the NBT already has the same value, the command will not run, therefore, getting the result of 0. If the NBT has a different value, the command will then run, therefore, getting the result of 1. 
+The reason why we're doing it the opposite way is due to how setting an already existing value works. If the NBT already has the same value, the command will not run, therefore, getting the result of 0. If the NBT has a different value, the command will then run, therefore, getting the result of 1. 
 <br>
 <br>
 
-Here's an example kombo that will run a <code>/tellraw</code> command if one would press the primary ability button 4 times: <br>
-(one must press either the primary, or secondary ability buttons beforehand to enable "kombo mode")
+<ol>
+<details>
+<summary>Here's an example kombo that will run a <code>/tellraw</code> command if one would press the primary ability button 4 times:
+<br>
+(one must press either the primary, or secondary ability buttons beforehand to enable "kombo mode")</summary>
 
 ```json
 {
@@ -162,7 +186,13 @@ Here's an example kombo that will run a <code>/tellraw</code> command if one wou
 }
 ```
 
-We would then reference the example kombo in the example origin's <code>"powers"</code> list, like so:
+</details>
+</ol>
+<br>
+
+<ol>
+<details>
+<summary>We would then reference the example kombo in the example origin's <code>"powers"</code> list, like so:</summary>
 
 ```json
 {
@@ -184,6 +214,12 @@ We would then reference the example kombo in the example origin's <code>"powers"
     "description": " "
 }
 ```
+
+</details>
+</ol>
+<br>
+
+You can visit [this branch](https://github.com/eggohito/origins-kombo/tree/example/data/origins-kombo-example/powers/kombos) to see all the example to use as a guide for creating your own kombo. 
 
 </details>
 </ol>
