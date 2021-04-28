@@ -21,8 +21,6 @@ scoreboard objectives add o-k.casted dummy
 
 scoreboard objectives add o-k.combo dummy
 
-scoreboard objectives add origins-kombo dummy
-
 
 #
 #   Set constant(s)/variable(s)
