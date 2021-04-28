@@ -27,18 +27,12 @@ scoreboard objectives add origins-kombo dummy
 #
 #   Set constant(s)/variable(s)
 #
-execute unless score #load origins-kombo = #load origins-kombo run scoreboard players set %max_combo o-k.max_combo 4
+execute unless score %max_combo o-k.max_combo = %max_combo o-k.max_combo run scoreboard players set %max_combo o-k.max_combo 4
 
-scoreboard players set #load origins-kombo 1
+scoreboard players set #origins-kombo load 1
 
 
 #
 #   Display a load message for debuggers
 #
 tellraw @a[tag = o-k.debugger] {"text": "[+ Loaded \"Key Combo (Origins)\"]", "color": "green"}
-
-
-#
-#   Re-initialize the tick function
-#
-schedule function origins-kombo:tick 1t replace
