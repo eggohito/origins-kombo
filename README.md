@@ -1,8 +1,26 @@
 # Key Combo (Origins)
 A datapack library that can activate powers depending on the power's set key combination pattern.
 <br>
+
 This datapack uses [PlayerDB](https://github.com/rx-modules/PlayerDB) so that multiple players can perform key combinations, or 'kombos' for short, at the same time without conflicting with one another.
-<br/>
+<br>
+
+This datapack also uses [Lantern Load](https://github.com/LanternMC/Load) to ensure that this datapack loads before your datapack. You can detect if this library is loaded by checking the score of the `#origins-kombo` score holder in the `load` objective. 
+<br>
+
+To ensure that this library loads before your datapack, you would add your load function inside the `#load:post_load` function tag (`data\load\tags\functions\post_load.json`), like so:
+<br>
+
+```json
+{
+    "values": [
+        "{namespace}:path/to/function"
+    ]
+}
+```
+
+<br>
+<br>
 
 # How to use:
 The 'kombo' (key combo) system has some adjustable per player-based variables, which you can set to however you like:
