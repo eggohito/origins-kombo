@@ -1,7 +1,4 @@
 # Key Combo (Origins)
-A datapack library that can activate powers depending on the power's set key combination pattern.
-<br>
-
 This datapack uses [PlayerDB](https://github.com/rx-modules/PlayerDB) so that multiple players can perform key combinations, or 'kombos' for short, at the same time without conflicting with one another.
 <br>
 
@@ -12,7 +9,7 @@ This datapack also uses [Lantern Load](https://github.com/LanternMC/Load) to ens
 
 <ol>
 <details>
-<summary>To ensure that this library loads before your datapack, you would add your load function inside the <code>#load:post_load</code> function tag (<code>data\load\tags\functions\post_load.json</code>) after copying the contents from the Lantern Load repository, like so:</summary>
+<summary>To ensure that this library loads before your datapack, you would add your load function inside the <code>#load:post_load</code> function tag (<code>data\load\tags\functions\post_load.json</code>) after copying the <code>minecraft</code> and <code>load</code> folders from the Lantern Load repository, like so:</summary>
 
 ```json
 {
@@ -22,11 +19,21 @@ This datapack also uses [Lantern Load](https://github.com/LanternMC/Load) to ens
 }
 ```
 
+* `{namespace}` being the namespace you're using. <br> 
+(e.g: `data\stuff` --> `stuff:*`)
+
+* `path/to/function` being your load function <br> 
+(e.g: `data\stuff\functions\load.mcfunction` --> `stuff:load`)
+
+You can see [in the example branch](https://github.com/eggohito/origins-kombo/tree/example/data) on how would one do it.
+
 </details>
 </ol>
 <br>
 
 # How to use:
+To make a kombo, you must first press either the primary or secondary ability key once in order to activate "KOMBO MODE".
+
 The 'kombo' (key combo) system has some adjustable per player-based variables, which you can set to however you like:
 <br>
 
@@ -135,8 +142,7 @@ The reason why we're doing it the opposite way is due to how setting an already 
 <ol>
 <details>
 <summary>Here's an example kombo that will run a <code>/tellraw</code> command if one would press the primary ability button 4 times:
-<br>
-(one must press either the primary, or secondary ability buttons beforehand to enable "kombo mode")</summary>
+</summary>
 
 ```json
 {
@@ -219,7 +225,7 @@ The reason why we're doing it the opposite way is due to how setting an already 
 </ol>
 <br>
 
-You can visit [this branch](https://github.com/eggohito/origins-kombo/tree/example/data/origins-kombo-example/powers/kombos) to see all the example to use as a guide for creating your own kombo. 
+You can visit [the example branch](https://github.com/eggohito/origins-kombo/tree/example/data/origins-kombo-example/powers/kombos) to see all the example kombos to use as a guide for creating your own kombo. 
 
 </details>
 </ol>
