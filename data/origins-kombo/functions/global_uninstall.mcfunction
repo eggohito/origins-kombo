@@ -1,4 +1,4 @@
-#> origins-kombo:uninstall
+#> origins-kombo:global_uninstall
 #
 #   > Removes residual data added by this namespace (if there is any)
 #
@@ -41,6 +41,6 @@ scoreboard objectives remove o-k.max_combo.r
 #
 #   Disable the datapack
 #
-datapack disable "file/origins-kombo-dev"
+datapack disable "file/origins-kombo"
 
 datapack disable "file/origins-kombo_v1.1.zip"
