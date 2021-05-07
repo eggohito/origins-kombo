@@ -2,9 +2,17 @@
 #
 #   > Run this function if the current kombo matches the set pattern
 #
-#   - Must be referenced in your own 'kombos'
+#   - Reference this function in your kombos
 #
 #@internal
+
+
+#
+#   Add a score to the player
+#
+#   - Used for delaying the 'no kombo' function
+#
+scoreboard players add @s o-k.kombos 1
 
 
 #

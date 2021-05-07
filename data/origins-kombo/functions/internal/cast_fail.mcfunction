@@ -2,7 +2,7 @@
 #
 #   > Run this function of the current kombo doesn't match any set pattern
 #
-#   - Must be referenced in your own 'kombos'
+#   - Reference this function in your 'kombos'
 #
 #@internal
 
@@ -13,7 +13,6 @@
 #   - Used for delaying the 'no kombo' function
 #
 scoreboard players add @s o-k.kombos 1
-
 
 
 #

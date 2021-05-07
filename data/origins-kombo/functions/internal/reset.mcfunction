@@ -19,7 +19,7 @@
 #
 scoreboard players set @s o-k.max_combo.r 0
 
-scoreboard players set @s o-k.kombos 0
+scoreboard players set @s o-k.kombos 1
 
 scoreboard players set @s o-k.casted 0
 
