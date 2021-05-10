@@ -41,7 +41,7 @@ The 'kombo' (key combo) system has some adjustable per player-based variables, w
 
 * The score of each player in the `o-k.max_combo` objective - used for determining the max combinations the player can do while in their KOMBO MODE. Try not to set the score of the player in this objective to 0 or less as well! The default value matches `%max_combo`'s value, which is set only once.
 <br>
-<br>
+
 
 <ol>
 <details>
