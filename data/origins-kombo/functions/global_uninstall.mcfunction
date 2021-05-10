@@ -43,4 +43,4 @@ scoreboard objectives remove o-k.max_combo.r
 #
 datapack disable "file/origins-kombo"
 
-datapack disable "file/origins-kombo_v1.1.zip"
+datapack disable "file/origins-kombo_v1.2.zip"
