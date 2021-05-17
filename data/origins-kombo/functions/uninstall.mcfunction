@@ -1,11 +1,11 @@
-#> origins-kombo:global_uninstall
+#> origins-kombo:uninstall
 #
 #   > Removes residual data added by this namespace (if there is any)
 #
-#   - Only run this function if the players don't have the origin(s) added by the datapacks 
-#     that depend on this library
+#   - Only run this function if the players don't have the origin(s) added by the 
+#     datapacks that depend on this library
 #
-#@user
+#@within tag/function origins-kombo:global_uninstall
 
 
 #
@@ -17,8 +17,6 @@ tellraw @a {"text": "[- Disabled \"Key Combo (Origins)\"]", "color": "red"}
 #
 #   Reset storage for all players
 #
-function #origins-kombo:uninstall
-
 execute as @a run function origins-kombo:internal/reset
 
 
