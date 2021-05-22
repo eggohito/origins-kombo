@@ -31,6 +31,6 @@ scoreboard players set @s o-k.combo 0
 #
 function rx.playerdb:api/get_self
 
-data remove storage rx:io playerdb.player.data.origins-kombo
+data remove storage rx:io playerdb.player.data.origins-kombo.input
 
 function rx.playerdb:api/save_self
