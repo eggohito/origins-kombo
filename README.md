@@ -46,13 +46,13 @@ The 'kombo' (key combo) system has some adjustable per player-based variables, w
 <ol>
 <details>
 <summary><b>Applying the key combo system</b></summary>
-We would first need to add the <code>origins-kombo:internal</code> power into the <code>"powers"</code> list of an origin for the whole key combo system to work. This power is used for checking if the player has reached its max combo, reached its cast timeout limit, etc.
+We would first need to add the <code>origins-kombo:internal</code> power into the <code>"powers"</code> array field of an origin for the whole key combo system to work. This power is used for checking if the player has reached its max combo, reached its cast timeout limit, etc.
 <br>
 <br>
 
 <ol>
 <details>
-<summary>Here's an example origin; and this is how its <code>"powers"</code> list would look like in order to use the key combo system:</summary>
+<summary>Here's an example origin; and this is how its <code>"powers"</code> array field would look like in order to use the key combo system:</summary>
 
 ```json
 {
@@ -90,7 +90,7 @@ Registering a key should be as simple as adding a power to your origin. These pr
 
 <ol>
 <details>
-<summary>In the example origin, we'll be registering multiple keys: the primary, and the secondary ability keys. This is how the <code>"powers"</code> list of the origin would look like:</summary>
+<summary>In the example origin, we'll be registering multiple keys: the primary, and the secondary ability keys. This is how the <code>"powers"</code> array field of the origin would look like:</summary>
 
 ```json
 {
@@ -121,7 +121,7 @@ Registering a key should be as simple as adding a power to your origin. These pr
 
 <ol>
 <details>
-<summary><b>Adding a your own kombo</b></summary>
+<summary><b>Adding your own kombo</b></summary>
 To add a kombo, we must first get the input data of the player in their storage entry added by PlayerDB. 
 <br>
 <br>
@@ -132,7 +132,7 @@ We can do so by running the <code>rx.playerdb:api/get_self</code> function. Afte
 Using the <code>origins:if_else</code> meta action, we can run different entity actions depending on the result. We'll then use the <code>origins:command</code> entity condition type to modify the said target NBT path in the said storage, which would store the result of the ran command which we can then use to compare it to a number. 
 <br>
 
-We'll be comparing the stored result to 0 to check if the command is run successfully or not. If the command is ran successfully, we'll run the <code>origins-kombo:internal/cast_fail</code> function to indicate that the casting for the kombo has failed. If the command is ran unsuccessfully, we'll run the <code>origins-kombo:internal/cast_success</code> function to indicate that the casting for the kombo has succeed, you can also run any kind of entity action you wish just after running the said function as long as its inside the `"actions"` list of the `origins:and` meta action inside the `"if_action"` object, like `origins:trigger_cooldown` for example.
+We'll be comparing the stored result to 0 to check if the command is run successfully or not. If the command is ran successfully, we'll run the <code>origins-kombo:internal/cast_fail</code> function to indicate that the casting for the kombo has failed. If the command is ran unsuccessfully, we'll run the <code>origins-kombo:internal/cast_success</code> function to indicate that the casting for the kombo has succeed, you can also run any kind of entity action you wish just after running the said function as long as its inside the `"actions"` object array of the `origins:and` meta action inside the `"if_action"` object, like `origins:trigger_cooldown` for example.
 <br>
 
 The reason why we're doing it the opposite way is due to how setting an already existing value works. If the NBT already has the same value, the command will not run, therefore, getting the result of 0. If the NBT has a different value, the command will then run, therefore, getting the result of 1. 
@@ -141,7 +141,7 @@ The reason why we're doing it the opposite way is due to how setting an already 
 
 <ol>
 <details>
-<summary>Here's an example kombo that will run a <code>/tellraw</code> command if one would press the primary ability button 4 times:
+<summary>Here's an example kombo named <code>simple</code> inside the <code>data\origins-kombo-example\powers\kombos</code> folder that will run a <code>/tellraw</code> command if one would press the primary ability button 4 times:
 </summary>
 
 ```json
@@ -198,7 +198,7 @@ The reason why we're doing it the opposite way is due to how setting an already 
 
 <ol>
 <details>
-<summary>We would then reference the example kombo in the example origin's <code>"powers"</code> list, like so:</summary>
+<summary>We would then reference the example kombo in the example origin's <code>"powers"</code> array field, like so:</summary>
 
 ```json
 {
