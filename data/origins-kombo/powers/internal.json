@@ -197,6 +197,13 @@
             ]
         }
     },
+    "remove_kombonents": {
+        "type": "origins:action_on_callback",
+        "entity_action_removed": {
+            "type": "origins:execute_command",
+            "command": "function origins-kombo:private/reset"
+        }
+    },
     "kombo_mode_primary": {
         "type": "origins:active_self",
         "entity_action": {
