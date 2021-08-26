@@ -5,7 +5,7 @@
         "actions": [
             {
                 "type": "origins:change_resource",
-                "resource": "*:internal_timeout",
+                "resource": "*:internal_timeout_timer",
                 "change": -69420
             },
             {
@@ -25,14 +25,14 @@
         "type": "origins:and",
         "conditions": [
             {
-                "type": "origins:resource",
-                "resource": "*:internal_casting",
+                "type": "origins:command",
+                "command": "execute if entity @s[tag = origins-kombo.casting]",
                 "comparison": "==",
                 "compare_to": 1
             },
             {
                 "type": "origins:resource",
-                "resource": "*:internal_casted",
+                "resource": "*:*_cooldown_timer",
                 "comparison": "==",
                 "compare_to": 0
             }

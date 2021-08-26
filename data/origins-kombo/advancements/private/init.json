@@ -5,6 +5,6 @@
         }
     },
     "rewards": {
-        "function": "origins-kombo:internal/init"
+        "function": "origins-kombo:private/init"
     }
 }
