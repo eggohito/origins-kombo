@@ -12,7 +12,7 @@ tag @s remove origins-kombo.max_combo_reached
 #   Reset the score of the player in the `o-k.combo` scoreboard objective
 scoreboard players set @s o-k.combo 0
 
-scoreboard players set @s o-k.holder 1
+scoreboard players reset @s o-k.buffer
 
 
 #   Save the current input as previous, then clear the current input

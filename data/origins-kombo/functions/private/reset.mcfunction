@@ -16,7 +16,7 @@ tag @s remove origins-kombo.casting
 #   Reset the player's score
 scoreboard players set @s o-k.combo 0
 
-scoreboard players set @s o-k.holder 1
+scoreboard players reset @s o-k.buffer
 
 
 #   Save the current input as previous, then clear the current input

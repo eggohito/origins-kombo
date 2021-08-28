@@ -123,7 +123,7 @@
         "interval": 1,
         "entity_action": {
             "type": "origins:execute_command",
-            "command": "scoreboard players operation @s o-k.holder -= @s o-k.holder"
+            "command": "scoreboard players operation @s o-k.buffer -= @s o-k.buffer"
         },
         "condition": {
             "type": "origins:and",
@@ -142,7 +142,7 @@
                 },
                 {
                     "type": "origins:scoreboard",
-                    "objective": "o-k.holder",
+                    "objective": "o-k.buffer",
                     "comparison": ">",
                     "compare_to": 0
                 }
@@ -190,7 +190,7 @@
                 },
                 {
                     "type": "origins:scoreboard",
-                    "objective": "o-k.holder",
+                    "objective": "o-k.buffer",
                     "comparison": "==",
                     "compare_to": 0
                 }
