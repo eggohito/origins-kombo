@@ -124,7 +124,7 @@ To add a kombo, we must first get the input data of the player in their PlayerDB
 <br>
 <br>
 
-We can do so by running the <code>origins-kombo:private/input/prepare</code> function. Afterwards, we would check for the pattern by setting the <code>playerdb.player.data.origins-kombo.check</code> NBT path in the `rx:io` storage as the set pattern we wish to use. 
+We can do so by running the <code>origins-kombo:private/input/prepare</code> function. Afterwards, we would check for the pattern by setting the <code>playerdb.player.data.origins-kombo.input.check</code> NBT path in the `rx:io` storage as the set pattern we wish to use. 
 <br>
 
 Using the <code>origins:if_else</code> meta action, we can run different entity actions depending on the result. We'll then use the <code>origins:command</code> entity condition type to modify the said target NBT path in the said storage, which would store the result of the ran command which we can then use to compare it to a number. 
