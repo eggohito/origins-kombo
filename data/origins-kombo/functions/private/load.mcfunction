@@ -23,8 +23,8 @@ data modify storage origins-kombo: root.version set value "2.0.0"
 
 
 #   Display a load/reload message
-execute unless score #loaded o-k.main = #loaded o-k.main run tellraw @a {"translate": "[+ Loaded \"Key Combos (Origins)\" @ v%s]", "color": "green", "with": [{"storage": "origins-kombo:", "nbt": "root.version"}]}
+execute unless score #loaded o-k.main = #loaded o-k.main run tellraw @a {"translate": "[+ Loaded \"Key Combo (Origins)\" @ v%s]", "color": "green", "with": [{"storage": "origins-kombo:", "nbt": "root.version"}]}
 
-execute if score #loaded o-k.main = #loaded o-k.main run tellraw @a[tag = origins-kombo.debugger] {"translate": "[+ Reloaded \"Key Combos (Origins)\" @ v%s]", "color": "green", "with": [{"storage": "origins-kombo:", "nbt": "root.version"}]}
+execute if score #loaded o-k.main = #loaded o-k.main run tellraw @a[tag = origins-kombo.debugger] {"translate": "[+ Reloaded \"Key Combo (Origins)\" @ v%s]", "color": "green", "with": [{"storage": "origins-kombo:", "nbt": "root.version"}]}
 
 scoreboard players set #loaded o-k.main 1

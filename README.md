@@ -2,14 +2,18 @@
 This datapack uses [PlayerDB](https://github.com/rx-modules/PlayerDB) so that multiple players can perform key combinations, or 'kombos' for short, at the same time without conflicting with one another.
 <br>
 
-This datapack also uses [Lantern Load](https://github.com/LanternMC/Load) to ensure that this datapack loads before your datapack. You can detect if this library is loaded by checking the score of the `#origins-kombo` score holder in the `load` objective. 
+This datapack also uses [Lantern Load](https://github.com/LanternMC/Load) to ensure that this datapack loads before your datapack. You can detect if this library is loaded by checking the score of the `origins-kombo` score holder in the `load.status` objective. 
+<br>
+
+e.g: `200` = version 2.0.0, etc.
+<br>
 <br>
 
 
 
 <ol>
 <details>
-<summary>To ensure that this library loads before your datapack, you would add your load function inside the <code>#load:post_load</code> function tag (<code>data\load\tags\functions\post_load.json</code>) after copying the <code>minecraft</code> and <code>load</code> folders from the Lantern Load repository, like so:</summary>
+<summary>To ensure that this library loads before your datapack, you would add your load function inside the <code>#load:post_load</code> function tag (<code>data/load/tags/functions/post_load.json</code>) after copying the <code>minecraft</code> and <code>load</code> folders from the Lantern Load repository, like so:</summary>
 
 ```json
 {
@@ -20,26 +24,26 @@ This datapack also uses [Lantern Load](https://github.com/LanternMC/Load) to ens
 ```
 
 * `{namespace}` being the namespace you're using. <br> 
-(e.g: `data\stuff` --> `stuff:*`)
+(e.g: `data/stuff` --> `stuff:*`)
 
 * `path/to/function` being your load function <br> 
-(e.g: `data\stuff\functions\load.mcfunction` --> `stuff:load`)
+(e.g: `data/example/functions/load.mcfunction` --> `stuff:load`)
 
-You can see [in the example branch](https://github.com/eggohito/origins-kombo/tree/example/data) on how would one do it.
+You can see [in the example branch](https://github.com/eggohito/origins-kombo/tree/1.17.x/example/data) on how would one do it.
 
 </details>
 </ol>
 <br>
 
 # How to use:
-To make a kombo, you must first press either the primary or secondary ability key once in order to activate "KOMBO MODE".
-
-The 'kombo' (key combo) system has some adjustable per player-based variables, which you can set to however you like:
+To make a kombo, you must first press either the primary or secondary ability key once in order to activate KOMBO mode.
 <br>
 
-* `%max_combo` - score holder, stored in the `o-k.max_combo` objective. Try not to set the score of this variable to 0 or less! The default value is 4.
+While in KOMBO mode, you can press the primary ability key to force-cast the 'kombo' you currently have. You can then press the secondary ability key to cancel 'kombo' casting entirely.
+<br>
 
-* The score of each player in the `o-k.max_combo` objective - used for determining the max combinations the player can do while in their KOMBO MODE. Try not to set the score of the player in this objective to 0 or less as well! The default value matches `%max_combo`'s value, which is set only once.
+You can modify the players' score in the `o-k.max_combo` scoreboard objective to configure the maximum amount of key combinations a player can do while in their KOMBO mode.
+<br>
 <br>
 
 
@@ -60,13 +64,8 @@ We would first need to add the <code>origins-kombo:internal</code> power into th
         "origins-kombo:internal"
     ],
     "icon": {
-        "item": "minecraft:bedrock"
-    },
-    "unchoosable": true,
-    "order": 0,
-    "impact": 0,
-    "name": "EXAMPLE",
-    "description": " "
+        "item": "minecraft:white_wool"
+    }
 }
 ```
 
@@ -90,24 +89,23 @@ Registering a key should be as simple as adding a power to your origin. These pr
 
 <ol>
 <details>
-<summary>In the example origin, we'll be registering multiple keys: the primary, and the secondary ability keys. This is how the <code>"powers"</code> array field of the origin would look like:</summary>
+<summary>In the example origin, we'll be registering multiple keys: attack, use, jump, sneak, left and right keys. This is how the <code>"powers"</code> array field of the origin would look like:</summary>
 
 ```json
 {
     "powers": [
         "origins-kombo:internal",
 
-        "origins-kombo:key/origins/primary_active",
-        "origins-kombo:key/origins/secondary_active"
+        "origins-kombo:key/attack",
+        "origins-kombo:key/use",
+        "origins-kombo:key/jump",
+        "origins-kombo:key/sneak",
+        "origins-kombo:key/left",
+        "origins-kombo:key/right"
     ],
     "icon": {
-        "item": "minecraft:bedrock"
-    },
-    "unchoosable": true,
-    "order": 0,
-    "impact": 0,
-    "name": "EXAMPLE",
-    "description": " "
+        "item": "minecraft:white_wool"
+    }
 }
 ```
 
@@ -122,17 +120,17 @@ Registering a key should be as simple as adding a power to your origin. These pr
 <ol>
 <details>
 <summary><b>Adding your own kombo</b></summary>
-To add a kombo, we must first get the input data of the player in their storage entry added by PlayerDB. 
+To add a kombo, we must first get the input data of the player in their PlayerDB entry, a storage-based per player database system.
 <br>
 <br>
 
-We can do so by running the <code>rx.playerdb:api/get_self</code> function. Afterwards, we would check for the pattern by setting the <code>playerdb.player.data.origins-kombo.check</code> NBT path in the `rx:io` storage as the set pattern we wish to use. 
+We can do so by running the <code>origins-kombo:private/input/prepare</code> function. Afterwards, we would check for the pattern by setting the <code>playerdb.player.data.origins-kombo.check</code> NBT path in the `rx:io` storage as the set pattern we wish to use. 
 <br>
 
 Using the <code>origins:if_else</code> meta action, we can run different entity actions depending on the result. We'll then use the <code>origins:command</code> entity condition type to modify the said target NBT path in the said storage, which would store the result of the ran command which we can then use to compare it to a number. 
 <br>
 
-We'll be comparing the stored result to 0 to check if the command is run successfully or not. If the command is ran successfully, we'll run the <code>origins-kombo:internal/cast_fail</code> function to indicate that the casting for the kombo has failed. If the command is ran unsuccessfully, we'll run the <code>origins-kombo:internal/cast_success</code> function to indicate that the casting for the kombo has succeed, you can also run any kind of entity action you wish just after running the said function as long as its inside the `"actions"` object array of the `origins:and` meta action inside the `"if_action"` object, like `origins:trigger_cooldown` for example.
+We'll be comparing the stored result to 0 to check if the command is run successfully or not. If the command is ran successfully, we'll run the <code>origins-kombo:private/cast/fail</code> function to indicate that the casting for the kombo has failed. If the command is ran unsuccessfully, we'll run the <code>origins-kombo:private/cast/success</code> function to indicate that the casting for the kombo has succeed, you can also run any kind of entity action you wish just after running the said function as long as its inside the `"actions"` object array of the `origins:and` meta action inside the `"if_action"` object, like `origins:trigger_cooldown` for example.
 <br>
 
 The reason why we're doing it the opposite way is due to how setting an already existing value works. If the NBT already has the same value, the command will not run, therefore, getting the result of 0. If the NBT has a different value, the command will then run, therefore, getting the result of 1. 
@@ -141,7 +139,7 @@ The reason why we're doing it the opposite way is due to how setting an already 
 
 <ol>
 <details>
-<summary>Here's an example kombo named <code>simple</code> inside the <code>data\origins-kombo-example\powers\kombos</code> folder that will run a <code>/tellraw</code> command if one would press the primary ability button 4 times:
+<summary>Here's an example kombo named <code>simple</code> inside the <code>data/example/powers/kombos</code> folder that will run a <code>/say</code> command if one would press the attack button twice:
 </summary>
 
 ```json
@@ -153,13 +151,13 @@ The reason why we're doing it the opposite way is due to how setting an already 
         "actions": [
             {
                 "type": "origins:execute_command",
-                "command": "function rx.playerdb:api/get_self"
+                "command": "function origins-kombo:private/input/prepare"
             },
             {
                 "type": "origins:if_else",
                 "condition": {
                     "type": "origins:command",
-                    "command": "data modify storage rx:io playerdb.player.data.origins-kombo.check set value [\"key.origins.primary_active\", \"key.origins.primary_active\", \"key.origins.primary_active\", \"key.origins.primary_active\"]",
+                    "command": "data modify storage rx:io playerdb.player.data.origins-kombo.input.check set value [\"key.attack\", \"key.attack\"]",
                     "comparison": "==",
                     "compare_to": 0
                 },
@@ -168,24 +166,29 @@ The reason why we're doing it the opposite way is due to how setting an already 
                     "actions": [
                         {
                             "type": "origins:execute_command",
-                            "command": "function origins-kombo:internal/cast_success"
+                            "command": "function origins-kombo:private/cast/success"
                         },
                         {
                             "type": "origins:execute_command",
-                            "command": "tellraw @a {\"translate\": \"%s casted \\\"Simple Kombo\\\"!\", \"color\": \"yellow\", \"with\": [{\"selector\": \"@s\", \"color\": \"green\"}]}"
+                            "command": "say Simple KOMBO"
                         }
                     ]
                 },
                 "else_action": {
-                    "type": "origins:execute_command",
-                    "command": "function origins-kombo:internal/cast_fail"
+                    "type": "origins:and",
+                    "actions": [
+                        {
+                            "type": "origins:execute_command",
+                            "command": "function origins-kombo:private/cast/fail"
+                        }
+                    ]
                 }
             }
         ]
     },
     "condition": {
         "type": "origins:command",
-        "command": "scoreboard players get @s o-k.max_combo.r",
+        "command": "execute if entity @s[tag = origins-kombo.max_combo_reached]",
         "comparison": "==",
         "compare_to": 1
     }
@@ -205,19 +208,18 @@ The reason why we're doing it the opposite way is due to how setting an already 
     "powers": [
         "origins-kombo:internal",
 
-        "origins-kombo:key/origins/primary_active",
-        "origins-kombo:key/origins/secondary_active",
+        "origins-kombo:key/attack",
+        "origins-kombo:key/use",
+        "origins-kombo:key/jump",
+        "origins-kombo:key/sneak",
+        "origins-kombo:key/left",
+        "origins-kombo:key/right",
         
-        "origins-kombo-example:kombos/simple"
+        "example:kombos/simple"
     ],
     "icon": {
-        "item": "minecraft:bedrock"
-    },
-    "unchoosable": true,
-    "order": 0,
-    "impact": 0,
-    "name": "EXAMPLE",
-    "description": " "
+        "item": "minecraft:white_wool"
+    }
 }
 ```
 
@@ -225,7 +227,7 @@ The reason why we're doing it the opposite way is due to how setting an already 
 </ol>
 <br>
 
-You can visit [the example branch](https://github.com/eggohito/origins-kombo/tree/example/data/origins-kombo-example/powers/kombos) to see all the example kombos to use as a guide for creating your own kombo. 
+You can visit [the example branch](https://github.com/eggohito/origins-kombo/tree/1.17.x/example/data/example/powers/kombos) to see all the example kombos to use as a guide for creating your own kombo. 
 
 </details>
 </ol>
