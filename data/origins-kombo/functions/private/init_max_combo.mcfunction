@@ -1,4 +1,4 @@
-#> origins-kombo:private/init
+#> origins-kombo:private/init_max_combo
 #
 #   > Initialize the player's max combo value
 #
