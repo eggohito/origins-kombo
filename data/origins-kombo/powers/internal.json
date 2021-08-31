@@ -29,8 +29,26 @@
             "type": "origins:and",
             "actions": [
                 {
-                    "type": "origins:trigger_cooldown",
-                    "power": "*:*_cooldown_timer"
+                    "type": "origins:if_else",
+                    "condition": {
+                        "type": "origins:command",
+                        "command": "execute if entity @s[tag = origins-kombo.trigger_cooldown]",
+                        "comparison": "==",
+                        "compare_to": 1
+                    },
+                    "if_action": {
+                        "type": "origins:and",
+                        "actions": [
+                            {
+                                "type": "origins:trigger_cooldown",
+                                "power": "*:*_cooldown_timer"
+                            },
+                            {
+                                "type": "origins:execute_command",
+                                "command": "tag @s remove origins-kombo.trigger_cooldown"
+                            }
+                        ]
+                    }
                 },
                 {
                     "type": "origins:change_resource",
