@@ -10,7 +10,11 @@
             },
             {
                 "type": "origins:execute_command",
-                "command": "function origins-kombo:key/save_toolbar_activator"
+                "command": "function rx.playerdb:api/get_self"
+            },
+            {
+                "type": "origins:execute_command",
+                "command": "function #origins-kombo:key/save_toolbar_activator"
             }
         ]
     },

@@ -247,10 +247,6 @@
                             }
                         ]
                     }
-                },
-                {
-                    "type": "origins:execute_command",
-                    "command": "function #origins-kombo:key/origins/primary_active"
                 }
             ]
         },
@@ -285,10 +281,6 @@
                         "type": "origins:and",
                         "actions": [
                             {
-                                "type": "origins:execute_command",
-                                "command": "tag @s add origins-kombo.force_stop"
-                            },
-                            {
                                 "type": "origins:change_resource",
                                 "resource": "*:*_timeout_timer",
                                 "change": -69420
@@ -304,17 +296,8 @@
                             {
                                 "type": "origins:delay",
                                 "action": {
-                                    "type": "origins:and",
-                                    "actions": [
-                                        {
-                                            "type": "origins:execute_command",
-                                            "command": "title @s actionbar {\"text\": \"KOMBO cast forcibly stopped!\", \"color\": \"red\"}"
-                                        },
-                                        {
-                                            "type": "origins:execute_command",
-                                            "command": "tag @s remove origins-kombo.force_stop"
-                                        }
-                                    ]
+                                    "type": "origins:execute_command",
+                                    "command": "title @s actionbar {\"text\": \"KOMBO casting forcibly stopped!\", \"color\": \"red\"}"
                                 },
                                 "ticks": 2
                             }
@@ -333,10 +316,6 @@
                             }
                         ]
                     }
-                },
-                {
-                    "type": "origins:execute_command",
-                    "command": "function #origins-kombo:key/origins/secondary_active"
                 }
             ]
         },
