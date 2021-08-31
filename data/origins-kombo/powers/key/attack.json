@@ -36,7 +36,7 @@
             },
             {
                 "type": "origins:resource",
-                "resource": "*:*_cooldown_timer",
+                "resource": "*:*_cooldown_visual",
                 "comparison": "==",
                 "compare_to": 0
             }

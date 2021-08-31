@@ -7,6 +7,8 @@
 
 scoreboard players set @s o-k.max_combo 4
 
+scoreboard players set @s o-k.cooldown.max 100
+
 
 function rx.playerdb:api/get_self
 

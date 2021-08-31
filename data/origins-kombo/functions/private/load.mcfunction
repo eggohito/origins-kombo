@@ -7,6 +7,10 @@
 
 
 #   Add scoreboard objective(s)
+scoreboard objectives add o-k.cooldown.cur dummy
+
+scoreboard objectives add o-k.cooldown.max dummy
+
 scoreboard objectives add o-k.max_combo dummy
 
 scoreboard objectives add o-k.buffer dummy
@@ -14,6 +18,10 @@ scoreboard objectives add o-k.buffer dummy
 scoreboard objectives add o-k.combo dummy
 
 scoreboard objectives add o-k.main dummy
+
+
+#   Set constants
+function origins-kombo:private/constants
 
 
 #   Set semantic version
