@@ -17,9 +17,9 @@ scoreboard objectives add o-k.main dummy
 
 
 #   Set semantic version
-scoreboard players set origins-kombo load.status 200
+scoreboard players set origins-kombo load.status 210
 
-data modify storage origins-kombo: root.version set value "2.0.0"
+data modify storage origins-kombo: root.version set value "2.1.0"
 
 
 #   Display a load/reload message
