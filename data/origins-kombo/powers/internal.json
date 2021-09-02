@@ -9,7 +9,7 @@
         },
         "condition": {
             "type": "origins:command",
-            "command": "execute if score @s o-k.combo >= @s o-k.max_combo",
+            "command": "execute if score @s o-k.combo >= @s o-k.combo.max",
             "comparison": "==",
             "compare_to": 1
         }
@@ -21,9 +21,12 @@
             "type": "origins:and",
             "actions": [
                 {
-                    "type": "origins:change_resource",
-                    "resource": "*:*_timeout_timer",
-                    "change": -69420
+                    "type": "origins:execute_command",
+                    "command": "scoreboard players set @s o-k.timeout.cur 0"
+                },
+                {
+                    "type": "origins:execute_command",
+                    "command": "resource operation @s origins-kombo:internal_timeout_visual = @s o-k.timeout.cur"
                 },
                 {
                     "type": "origins:execute_command",
@@ -114,47 +117,79 @@
             "compare_to": 1
         }
     },
-    "timeout_timer": {
+    "timeout_visual": {
         "type": "origins:resource",
         "min": 0,
-        "max": 40,
+        "max": 100,
         "hud_render": {
             "should_render": true,
             "sprite_location": "origins:textures/gui/community/spiderkolo/resource_bar_03.png",
             "bar_index": 9,
             "condition": {
                 "type": "origins:resource",
-                "resource": "*:*_timeout_timer",
+                "resource": "*:*_timeout_visual",
                 "comparison": ">",
                 "compare_to": 0
             }
-        },
-        "max_action": {
-            "type": "origins:and",
-            "actions": [
-                {
-                    "type": "origins:change_resource",
-                    "resource": "*:*_timeout_timer",
-                    "change": -69420
-                },
-                {
-                    "type": "origins:execute_command",
-                    "command": "function origins-kombo:private/reset"
-                },
-                {
-                    "type": "origins:execute_command",
-                    "command": "function origins-kombo:private/cast/timed_out/delay"
-                }
-            ]
         }
     },
-    "timeout_timer_start": {
+    "timeout_visual_process": {
         "type": "origins:action_over_time",
         "interval": 1,
         "entity_action": {
-            "type": "origins:change_resource",
-            "resource": "*:*_timeout_timer",
-            "change": 1
+            "type": "origins:if_else",
+            "condition": {
+                "type": "origins:command",
+                "command": "execute unless score @s o-k.timeout.cur >= @s o-k.timeout.max",
+                "comparison": "==",
+                "compare_to": 1
+            },
+            "if_action": {
+                "type": "origins:and",
+                "actions": [
+                    {
+                        "type": "origins:execute_command",
+                        "command": "scoreboard players add @s o-k.timeout.cur 1"
+                    },
+                    {
+                        "type": "origins:execute_command",
+                        "command": "scoreboard players operation #display o-k.timeout.cur = @s o-k.timeout.cur"
+                    },
+                    {
+                        "type": "origins:execute_command",
+                        "command": "scoreboard players operation #display o-k.timeout.cur *= #100 o-k.main"
+                    },
+                    {
+                        "type": "origins:execute_command",
+                        "command": "scoreboard players operation #display o-k.timeout.cur /= @s o-k.timeout.max"
+                    },
+                    {
+                        "type": "origins:execute_command",
+                        "command": "resource operation @s origins-kombo:internal_timeout_visual = #display o-k.timeout.cur"
+                    }
+                ]
+            },
+            "else_action": {
+                "type": "origins:and",
+                "actions": [
+                    {
+                        "type": "origins:execute_command",
+                        "command": "function origins-kombo:private/reset"
+                    },
+                    {
+                        "type": "origins:execute_command",
+                        "command": "function origins-kombo:private/cast/timed_out/delay"
+                    },
+                    {
+                        "type": "origins:execute_command",
+                        "command": "scoreboard players set @s o-k.timeout.cur 0"
+                    },
+                    {
+                        "type": "origins:execute_command",
+                        "command": "resource operation @s origins-kombo:internal_timeout_visual = @s o-k.timeout.cur"
+                    }
+                ]
+            }
         },
         "condition": {
             "type": "origins:and",
@@ -274,9 +309,12 @@
                         "type": "origins:and",
                         "actions": [
                             {
-                                "type": "origins:change_resource",
-                                "resource": "*:*_timeout_timer",
-                                "change": -69420
+                                "type": "origins:execute_command",
+                                "command": "scoreboard players set @s o-k.timeout.cur 0"
+                            },
+                            {
+                                "type": "origins:execute_command",
+                                "command": "resource operation @s origins-kombo:internal_timeout_visual = @s o-k.timeout.cur"
                             },
                             {
                                 "type": "origins:execute_command",
@@ -331,9 +369,12 @@
                         "type": "origins:and",
                         "actions": [
                             {
-                                "type": "origins:change_resource",
-                                "resource": "*:*_timeout_timer",
-                                "change": -69420
+                                "type": "origins:execute_command",
+                                "command": "scoreboard players set @s o-k.timeout.cur 0"
+                            },
+                            {
+                                "type": "origins:execute_command",
+                                "command": "resource operation @s origins-kombo:internal_timeout_visual = @s o-k.timeout.cur"
                             },
                             {
                                 "type": "origins:execute_command",

@@ -5,7 +5,9 @@
 #@within advancement *:.cfg/default
 
 
-scoreboard players set @s o-k.max_combo 4
+scoreboard players set @s o-k.combo.max 4
+
+scoreboard players set @s o-k.timeout.max 40
 
 scoreboard players set @s o-k.cooldown.max 100
 

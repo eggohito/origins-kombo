@@ -14,7 +14,15 @@ data remove storage rx:global playerdb.players[].data.origins-kombo
 
 
 #   Remove scoreboard objectives
-scoreboard objectives remove o-k.max_combo
+scoreboard objectives remove o-k.cooldown.cur
+
+scoreboard objectives remove o-k.cooldown.max
+
+scoreboard objectives remove o-k.timeout.cur
+
+scoreboard objectives remove o-k.timeout.max
+
+scoreboard objectives remove o-k.combo.max
 
 scoreboard objectives remove o-k.buffer
 
@@ -28,6 +36,6 @@ data remove storage origins-kombo: root
 
 
 #   Disable datapack
-datapack disable "origins-kombo_1.17_v2.1.0"
+datapack disable "origins-kombo_1.17"
 
-datapack disable "origins-kombo_1.17_v2.1.0.zip"
+datapack disable "origins-kombo_1.17_v2.2.0.zip"

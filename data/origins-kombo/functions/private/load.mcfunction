@@ -11,7 +11,11 @@ scoreboard objectives add o-k.cooldown.cur dummy
 
 scoreboard objectives add o-k.cooldown.max dummy
 
-scoreboard objectives add o-k.max_combo dummy
+scoreboard objectives add o-k.timeout.cur dummy
+
+scoreboard objectives add o-k.timeout.max dummy
+
+scoreboard objectives add o-k.combo.max dummy
 
 scoreboard objectives add o-k.buffer dummy
 
@@ -25,9 +29,9 @@ function origins-kombo:private/constants
 
 
 #   Set semantic version
-scoreboard players set origins-kombo load.status 210
+scoreboard players set origins-kombo load.status 220
 
-data modify storage origins-kombo: root.version set value "2.1.0"
+data modify storage origins-kombo: root.version set value "2.2.0"
 
 
 #   Display a load/reload message

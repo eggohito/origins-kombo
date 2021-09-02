@@ -3,7 +3,7 @@
 #   > Delays a function that would display a message that indicates that the kombo casting process has timed out
 #
 #    called from:
-#       - `origins-kombo:internal_kombo_mode_timeout_timer`
+#       - `origins-kombo:internal_kombo_mode_timeout_visual`
 #
 #@private
 

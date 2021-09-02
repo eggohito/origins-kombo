@@ -4,9 +4,8 @@
         "type": "origins:and",
         "actions": [
             {
-                "type": "origins:change_resource",
-                "resource": "*:internal_timeout_timer",
-                "change": -69420
+                "type": "origins:execute_command",
+                "command": "scoreboard players set @s o-k.timeout.cur 0"
             },
             {
                 "type": "origins:execute_command",
