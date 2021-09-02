@@ -5,6 +5,6 @@
         }
     },
     "rewards": {
-        "function": "origins-kombo:private/init_max_combo"
+        "function": "origins-kombo:.cfg/default"
     }
 }

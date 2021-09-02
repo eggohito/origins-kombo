@@ -143,15 +143,7 @@
                 },
                 {
                     "type": "origins:execute_command",
-                    "command": "title @s actionbar {\"text\": \"\"}"
-                },
-                {
-                    "type": "origins:delay",
-                    "action": {
-                        "type": "origins:execute_command",
-                        "command": "title @s actionbar {\"text\": \"KOMBO cast timed out!\", \"color\": \"red\"}"
-                    },
-                    "ticks": 2
+                    "command": "function origins-kombo:private/cast/timed_out/delay"
                 }
             ]
         }
@@ -225,15 +217,7 @@
                 },
                 {
                     "type": "origins:execute_command",
-                    "command": "title @s actionbar {\"text\": \"\"}"
-                },
-                {
-                    "type": "origins:delay",
-                    "action": {
-                        "type": "origins:execute_command",
-                        "command": "title @s actionbar {\"text\": \"Unregistered kombo pattern!\", \"color\": \"red\"}"
-                    },
-                    "ticks": 2
+                    "command": "function origins-kombo:private/cast/unregistered/delay"
                 }
             ]
         },
@@ -287,8 +271,18 @@
                         ]
                     },
                     "if_action": {
-                        "type": "origins:execute_command",
-                        "command": "function origins-kombo:private/input/reached_max"
+                        "type": "origins:and",
+                        "actions": [
+                            {
+                                "type": "origins:change_resource",
+                                "resource": "*:*_timeout_timer",
+                                "change": -69420
+                            },
+                            {
+                                "type": "origins:execute_command",
+                                "command": "function origins-kombo:private/input/reached_max"
+                            }
+                        ]
                     },
                     "else_action": {
                         "type": "origins:and",
@@ -299,15 +293,7 @@
                             },
                             {
                                 "type": "origins:execute_command",
-                                "command": "title @s actionbar {\"text\": \"\"}"
-                            },
-                            {
-                                "type": "origins:delay",
-                                "action": {
-                                    "type": "origins:execute_command",
-                                    "command": "title @s actionbar {\"text\": \"+ KOMBO MODE +\", \"color\": \"green\"}"
-                                },
-                                "ticks": 2
+                                "command": "function origins-kombo:private/cast/started/delay"
                             }
                         ]
                     }
@@ -355,15 +341,7 @@
                             },
                             {
                                 "type": "origins:execute_command",
-                                "command": "title @s actionbar {\"text\": \"\"}"
-                            },
-                            {
-                                "type": "origins:delay",
-                                "action": {
-                                    "type": "origins:execute_command",
-                                    "command": "title @s actionbar {\"text\": \"KOMBO casting forcibly stopped!\", \"color\": \"red\"}"
-                                },
-                                "ticks": 2
+                                "command": "function origins-kombo:private/cast/cancelled/delay"
                             }
                         ]
                     },
@@ -376,7 +354,7 @@
                             },
                             {
                                 "type": "origins:execute_command",
-                                "command": "title @s actionbar {\"text\": \"+ KOMBO MODE +\", \"color\": \"green\"}"
+                                "command": "function origins-kombo:private/cast/started/delay"
                             }
                         ]
                     }
