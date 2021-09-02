@@ -42,7 +42,7 @@ To make a kombo, you must first press either the primary or secondary ability ke
 While in KOMBO mode, you can press the primary ability key to force-cast the 'kombo' you currently have. You can then press the secondary ability key to cancel 'kombo' casting entirely.
 <br>
 
-You can modify the players' score in the `o-k.max_combo` scoreboard objective to configure the maximum amount of key combinations a player can do while in their KOMBO mode.
+You can modify the players' score in the `o-k.combo.max` scoreboard objective to configure the maximum amount of key combinations a player can do while in their KOMBO mode.
 <br>
 <br>
 
