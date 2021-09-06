@@ -36,6 +36,6 @@ data remove storage origins-kombo: root
 
 
 #   Disable datapack
-datapack disable "origins-kombo_1.17"
+datapack disable "origins-kombo_1.17_v2.2.0"
 
 datapack disable "origins-kombo_1.17_v2.2.0.zip"
