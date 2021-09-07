@@ -1,8 +1,8 @@
-#> origins-kombo:.cfg/default
+#> origins-kombo:config/default
 #
 #   > Initialize the player's max combo value
 #
-#@within advancement *:.cfg/default
+#@within advancement *:config/default
 
 
 scoreboard players set @s o-k.combo.max 4
