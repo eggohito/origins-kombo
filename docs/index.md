@@ -26,4 +26,4 @@ Visit the [GitHub repository](https://github.com/eggohito/origins-kombo) of the 
 
 * The datapack library uses [PlayerDB](https://github.com/rx-modules/PlayerDB) to store arbitrary data for each player, meaning that each player can cast 'kombos' at the same time without conflicts.
 
-* The datapack library uses [Lantern Load](https://github.com/LanternMC/Load) to ensure that the datapacks that will depend on it will load *after* it, which can then be utilized to check if the datapack library is loaded beforehand. [See here for more information.](misc/lantern_load_integration.md)
+* The datapack library uses [Lantern Load](https://github.com/LanternMC/Load) to ensure that the datapacks that will depend on it will load *after* it, which can then be utilized to check if the datapack library is loaded beforehand. <br> [See here for more information.](misc/lantern_load_integration.md)
