@@ -6,7 +6,7 @@
 
 
 #   Display an uninstallation message
-tellraw @a {"translate": "[- Disabled \"Key Combo (Origins) @ v%s\"]", "color": "red", "with": [{"storage": "origins-kombo:", "nbt": "root.semver"}]}
+tellraw @a {"translate": "[- Disabled \"Key Combo (Origins) @ v%s\"]", "color": "red", "with": [{"storage": "origins-kombo:", "nbt": "root.version"}]}
 
 
 #   Remove the `origins-kombo` data of all players in PlayerDB
