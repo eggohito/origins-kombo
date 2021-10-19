@@ -1,0 +1,15 @@
+site_name: origins-kombo Documentation
+nav:
+    - Home: index.md
+theme:
+    name: readthedocs
+    highlightjs: true
+    prev_next_buttons_location: none
+    titles_only: true
+markdown_extensions:
+    - toc:
+        permalink: true
+        separator: '_'
+    - admonition
+    - sane_lists
+    - codehilite
