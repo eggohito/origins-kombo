@@ -22,7 +22,7 @@ Visit the [GitHub repository](https://github.com/eggohito/origins-kombo) of the 
 
 * While in 'KOMBO MODE', you can press the Primary ability key to 'force-cast' a 'kombo' you currently have, and you can press the Secondary ability key to cancel 'kombo' casting entirely.
 
-* You can modify the score of the player(s) in the `ok.combo.max` scoreboard objective to configure the max amount of key presses the player can do while in their 'KOMBO MODE'.
+* You can modify the score of the player(s) in the `o-k.combo.max` scoreboard objective to configure the max amount of key presses the player can do while in their 'KOMBO MODE'.
 
 * The datapack library uses [PlayerDB](https://github.com/rx-modules/PlayerDB) to store arbitrary data for each player, meaning that each player can cast 'kombos' at the same time without conflicts.
 
