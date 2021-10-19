@@ -3,12 +3,12 @@ nav:
     - Home: index.md
 theme:
     name: readthedocs
-    highlightjs: true
+    highlightjs: True
     prev_next_buttons_location: none
-    titles_only: true
+    titles_only: True
 markdown_extensions:
     - toc:
-        permalink: true
+        permalink: True
         separator: '_'
     - admonition
     - sane_lists
