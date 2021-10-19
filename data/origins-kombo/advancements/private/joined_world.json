@@ -5,6 +5,6 @@
         }
     },
     "rewards": {
-        "function": "origins-kombo:config/default"
+        "function": "origins-kombo:key/set"
     }
 }
