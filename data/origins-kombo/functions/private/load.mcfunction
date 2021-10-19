@@ -29,9 +29,9 @@ function origins-kombo:private/constants
 
 
 #   Set semantic version
-scoreboard players set origins-kombo load.status 220
+scoreboard players set origins-kombo load.status 300
 
-data modify storage origins-kombo: root.version set value "2.2.0"
+data modify storage origins-kombo: root.version set value "3.0.0"
 
 
 #   Display a load/reload message
