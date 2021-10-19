@@ -124,13 +124,13 @@ To add a kombo, we must first get the input data of the player in their PlayerDB
 <br>
 <br>
 
-We can do so by running the <code>origins-kombo:private/input/prepare</code> function. Afterwards, we would check for the pattern by setting the <code>playerdb.player.data.origins-kombo.input.check</code> NBT path in the `rx:io` storage as the set pattern we wish to use. 
+We can do so by running the <code>origins-kombo:api/prepare_input</code> function. Afterwards, we would check for the pattern by setting the <code>playerdb.player.data.origins-kombo.input.check</code> NBT path in the `rx:io` storage as the set pattern we wish to use. 
 <br>
 
 Using the <code>origins:if_else</code> meta action, we can run different entity actions depending on the result. We'll then use the <code>origins:command</code> entity condition type to modify the said target NBT path in the said storage, which would store the result of the ran command which we can then use to compare it to a number. 
 <br>
 
-We'll be comparing the stored result to 0 to check if the command is run successfully or not. If the command is ran successfully, we'll run the <code>origins-kombo:private/cast/fail</code> function to indicate that the casting for the kombo has failed. If the command is ran unsuccessfully, we'll run the <code>origins-kombo:private/cast/success</code> function to indicate that the casting for the kombo has succeed, you can also run any kind of entity action you wish just after running the said function as long as its inside the `"actions"` object array of the `origins:and` meta action inside the `"if_action"` object, like `origins:trigger_cooldown` for example.
+We'll be comparing the stored result to 0 to check if the command is run successfully or not. If the command is ran successfully, we'll run the <code>origins-kombo:api/cast_fail</code> function to indicate that the casting for the kombo has failed. If the command is ran unsuccessfully, we'll run the <code>origins-kombo:api/cast_success</code> function to indicate that the casting for the kombo has succeed, you can also run any kind of entity action you wish just after running the said function as long as its inside the `"actions"` object array of the `origins:and` meta action inside the `"if_action"` object, like `origins:trigger_cooldown` for example.
 <br>
 
 The reason why we're doing it the opposite way is due to how setting an already existing value works. If the NBT already has the same value, the command will not run, therefore, getting the result of 0. If the NBT has a different value, the command will then run, therefore, getting the result of 1. 
@@ -151,7 +151,7 @@ The reason why we're doing it the opposite way is due to how setting an already 
         "actions": [
             {
                 "type": "origins:execute_command",
-                "command": "function origins-kombo:private/input/prepare"
+                "command": "function origins-kombo:api/prepare_input"
             },
             {
                 "type": "origins:if_else",
@@ -166,7 +166,7 @@ The reason why we're doing it the opposite way is due to how setting an already 
                     "actions": [
                         {
                             "type": "origins:execute_command",
-                            "command": "function origins-kombo:private/cast/success"
+                            "command": "function origins-kombo:api/cast_success"
                         },
                         {
                             "type": "origins:execute_command",
@@ -179,7 +179,7 @@ The reason why we're doing it the opposite way is due to how setting an already 
                     "actions": [
                         {
                             "type": "origins:execute_command",
-                            "command": "function origins-kombo:private/cast/fail"
+                            "command": "function origins-kombo:api/cast_fail"
                         }
                     ]
                 }
