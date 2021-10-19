@@ -1,4 +1,4 @@
-#> origins-kombo:private/input/prepare
+#> origins-kombo:api/prepare_input
 #
 #   > Get the current kombo input of the player from their PlayerDB entry, and add 1 to their `o-k.buffer` objective
 #

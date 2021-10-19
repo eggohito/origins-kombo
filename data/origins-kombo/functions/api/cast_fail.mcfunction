@@ -1,4 +1,4 @@
-#> origins-kombo:private/cast/fail
+#> origins-kombo:api/cast_fail
 #
 #   > If the current kombo pattern does not match the current power kombo pattern
 #

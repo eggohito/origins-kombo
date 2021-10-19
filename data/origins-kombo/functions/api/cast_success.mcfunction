@@ -1,4 +1,4 @@
-#> origins-kombo:private/cast/success
+#> origins-kombo:api/cast_success
 #
 #   > If the current kombo pattern matches with the current power kombo pattern
 #

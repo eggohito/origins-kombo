@@ -1,4 +1,4 @@
-#> origins-kombo:private/no_match
+#> origins-kombo:private/input/no_match
 #
 #   > If the kombo pattern doesn't match any of the powers' kombo pattern
 #

@@ -248,7 +248,7 @@
             "actions": [
                 {
                     "type": "origins:execute_command",
-                    "command": "function origins-kombo:private/no_match"
+                    "command": "function origins-kombo:private/input/no_match"
                 },
                 {
                     "type": "origins:execute_command",
