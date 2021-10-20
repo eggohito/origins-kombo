@@ -5,6 +5,9 @@ nav:
       - Applying the key combo system: how_to_use/applying_the_key_combo_system.md
       - Registering a key or multiple keys: how_to_use/registering_a_key_or_multiple_keys.md
       - Adding your own kombo: how_to_use/adding_your_own_kombo.md
+    - GitHub repository: 
+      - Datapack library: https://github.com/eggohito/origins-kombo/tree/1.17.x/api
+      - Datapack example: https://github.com/eggohito/origins-kombo/tree/1.17.x/example
 theme:
     name: readthedocs
     highlightjs: True
