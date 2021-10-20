@@ -8,11 +8,13 @@ nav:
     - GitHub repository: 
       - Datapack library: https://github.com/eggohito/origins-kombo/tree/1.17.x/api
       - Datapack example: https://github.com/eggohito/origins-kombo/tree/1.17.x/example
+    - Miscellaneous:
+      - Lantern Load integration: misc/lantern_load_integration.md
+      - Power Keys: misc/power_keys.md
 theme:
     name: readthedocs
     highlightjs: True
     prev_next_buttons_location: none
-    titles_only: True
 markdown_extensions:
     - toc:
         permalink: True
