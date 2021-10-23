@@ -6,7 +6,7 @@
 
 
 #   Add a temporary tag to the player
-scoreboard players add @s o-k.buffer 0
+scoreboard players add @s o-k.buffer 1
 
 tag @s add origins-kombo.max_combo_reached
 
