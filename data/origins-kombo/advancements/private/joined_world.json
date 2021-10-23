@@ -5,6 +5,6 @@
         }
     },
     "rewards": {
-        "function": "origins-kombo:key/set"
+        "function": "origins-kombo:private/joined_world"
     }
 }
