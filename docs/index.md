@@ -16,14 +16,14 @@ Visit the [GitHub repository](https://github.com/eggohito/origins-kombo) of the 
 
 ##  General information
 
-* 'Kombo' stands for 'key combination'.
+In order to make a kombo (key combination), you must first enable 'kombo mode' by pressing either the primary or secondary key once.
 
-* In order to make a 'kombo', you must first enable 'KOMBO MODE', which can be done by pressing either the Primary or Secondary ability key once.
+While in 'kombo mode', you can press the primary key to cast a kombo you currently have forcefully. You can then press the secondary key to disable 'kombo mode'.
 
-* While in 'KOMBO MODE', you can press the Primary ability key to 'force-cast' a 'kombo' you currently have, and you can press the Secondary ability key to cancel 'kombo' casting entirely.
+The kombo system provides configurable variables that can be modified however one likes to:
 
-* You can modify the score of the player(s) in the `o-k.combo.max` scoreboard objective to configure the max amount of key presses the player can do while in their 'KOMBO MODE'.
-
-* The datapack library uses [PlayerDB](https://github.com/rx-modules/PlayerDB) to store arbitrary data for each player, meaning that each player can cast 'kombos' at the same time without conflicts.
-
-* The datapack library uses [Lantern Load](https://github.com/LanternMC/Load) to ensure that the datapacks that will depend on it will load *after* it, which can then be utilized to check if the datapack library is loaded beforehand. <br> [See here for more information.](misc/lantern_load_integration.md)
+Name | Type | Default | Description
+-----|------|---------|-------------
+`o-k.combo.max` | Scoreboard Objective (dummy) | `4` | Determines how many key presses a player can do before casting their kombo.
+`o-k.cooldown.max` | Scoreboard Objective (dummy) | `100` | Determines the cooldown for being able to cast a kombo.
+`o-k.timeout.max` | Scoreboard Objective (dummy) | `40` | Deterimes how long a player can be in 'kombo mode' before timing out.
