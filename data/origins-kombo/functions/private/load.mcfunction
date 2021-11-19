@@ -3,7 +3,6 @@
 #   > The main load function for the `origins-kombo` namespace
 #
 #@within tag/function load:load
-#declare storage origins-kombo:
 
 
 #   Add scoreboard objective(s)

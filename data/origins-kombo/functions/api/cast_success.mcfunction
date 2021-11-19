@@ -2,7 +2,7 @@
 #
 #   > If the current kombo pattern matches with the current power kombo pattern
 #
-#@internal
+#@api
 
 
 #   Add the `origins-kombo.has_matching_kombo` tag and remove the `origins-kombo.max_combo_reached` and `origins-kombo.casting` tags

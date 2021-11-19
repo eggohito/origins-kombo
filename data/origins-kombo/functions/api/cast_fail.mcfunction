@@ -2,7 +2,7 @@
 #
 #   > If the current kombo pattern does not match the current power kombo pattern
 #
-#@internal
+#@api
 
 
 #   Reset the storage

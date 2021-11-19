@@ -2,7 +2,7 @@
 #
 #   > Get the current kombo input of the player from their PlayerDB entry, and add 1 to their `o-k.buffer` objective
 #
-#@public
+#@api
 
 
 #   Prepare the current input for checking
