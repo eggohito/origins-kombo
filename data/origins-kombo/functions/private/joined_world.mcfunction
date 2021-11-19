@@ -5,6 +5,8 @@
 #@within advancement origins-kombo:private/joined_world
 
 
-function origins-kombo:config/default
+function origins-kombo:config/default/message_strings
+
+function origins-kombo:config/default/variables
 
 function origins-kombo:key/set

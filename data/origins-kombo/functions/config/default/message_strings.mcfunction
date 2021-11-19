@@ -1,16 +1,8 @@
-#> origins-kombo:config/default
+#> origins-kombo:config/default/message_strings
 #
-#   > The default configuration for the `origins-kombo` namespace
+#   > The default message strings
 #
 #@public
-
-
-#   Set the default values for the variables
-scoreboard players set @s o-k.combo.max 4
-
-scoreboard players set @s o-k.timeout.max 40
-
-scoreboard players set @s o-k.cooldown.max 100
 
 
 #   Set the default values for the message strings
