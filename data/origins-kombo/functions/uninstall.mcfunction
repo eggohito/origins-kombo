@@ -6,7 +6,7 @@
 
 
 #   Display an uninstallation message
-tellraw @a {"translate": "[- Disabled \"Key Combo (Origins) @ v%s\"]", "color": "red", "with": [{"storage": "origins-kombo:", "nbt": "root.version"}]}
+tellraw @a {"translate": "[- Disabled \"Key Combo (Origins)\" @ v%1$s.%2$s.%3$s]", "color": "red", "with": [{"storage": "origins-kombo:", "nbt": "root.semver.major"}, {"storage": "origins-kombo:", "nbt": "root.semver.minor"}, {"storage": "origins-kombo:", "nbt": "root.semver.patch"}]}
 
 
 #   Remove the `origins-kombo` data of all players in PlayerDB
@@ -38,6 +38,6 @@ data remove storage origins-kombo: root
 #   Disable datapack
 datapack disable "file/origins-kombo_1.17_dev"
 
-datapack disable "file/origins-kombo_1.17_v3.0.1"
+datapack disable "file/origins-kombo_1.17_v3.1.0"
 
-datapack disable "file/origins-kombo_1.17_v3.0.1.zip"
+datapack disable "file/origins-kombo_1.17_v3.1.0.zip"
