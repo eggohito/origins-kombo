@@ -28,21 +28,7 @@ function origins-kombo:private/constants
 
 
 #   Set semantic version
-data modify storage origins-kombo: root.semver.major set value 3
-
-data modify storage origins-kombo: root.semver.minor set value 1
-
-data modify storage origins-kombo: root.semver.patch set value 0
-
-
-scoreboard players set origins-kombo load.status 1
-
-
-execute store result score origins-kombo.major load.status run data get storage origins-kombo: root.semver.major
-
-execute store result score origins-kombo.minor load.status run data get storage origins-kombo: root.semver.minor
-
-execute store result score origins-kombo.patch load.status run data get storage origins-kombo: root.semver.patch
+function origins-kombo:private/set_semver
 
 
 #   Display a load/reload message
@@ -51,3 +37,7 @@ execute unless score #loaded o-k.main = #loaded o-k.main run tellraw @a {"transl
 execute if score #loaded o-k.main = #loaded o-k.main run tellraw @a[tag = origins-kombo.debugger] {"translate": "[= Reloaded \"Key Combo (Origins)\" @ v%1$s.%2$s.%3$s]", "color": "gold", "with": [{"storage": "origins-kombo:", "nbt": "root.semver.major"}, {"storage": "origins-kombo:", "nbt": "root.semver.minor"}, {"storage": "origins-kombo:", "nbt": "root.semver.patch"}]}
 
 scoreboard players set #loaded o-k.main 1
+
+
+#   Load addons
+function #origins-kombo:addons
