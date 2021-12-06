@@ -14,7 +14,7 @@
                                 {
                                     "condition": "minecraft:match_tool",
                                     "predicate": {
-                                        "items": ["minecraft:air"],
+                                        "item": "minecraft:air",
                                         "nbt": "{drop_contents:1b}"
                                     }
                                 }
