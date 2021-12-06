@@ -2,7 +2,7 @@
 #
 #   > The main load function for the `origins-kombo` namespace
 #
-#@within tag/function load:load
+#@within tag/function *:load
 
 
 #   Add scoreboard objective(s)
@@ -37,7 +37,3 @@ execute unless score #loaded o-k.main = #loaded o-k.main run tellraw @a {"transl
 execute if score #loaded o-k.main = #loaded o-k.main run tellraw @a[tag = origins-kombo.debugger] {"translate": "[= Reloaded \"Key Combo (Origins)\" @ v%1$s.%2$s.%3$s]", "color": "gold", "with": [{"storage": "origins-kombo:", "nbt": "root.semver.major"}, {"storage": "origins-kombo:", "nbt": "root.semver.minor"}, {"storage": "origins-kombo:", "nbt": "root.semver.patch"}]}
 
 scoreboard players set #loaded o-k.main 1
-
-
-#   Load addons
-function #origins-kombo:addons

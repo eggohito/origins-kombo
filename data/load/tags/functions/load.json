@@ -1,6 +1,6 @@
 {
     "values": [
     	"#rx.playerdb:load",
-        "origins-kombo:private/load"
+        "#origins-kombo:load"
     ]
 }
