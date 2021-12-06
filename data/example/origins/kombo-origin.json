@@ -1,0 +1,20 @@
+{
+    "powers": [
+        "origins-kombo:internal",
+
+        "origins-kombo:key/forward",
+        "origins-kombo:key/left",
+        "origins-kombo:key/right",
+        "origins-kombo:key/back",
+        "origins-kombo:key/jump",
+        "origins-kombo:key/sneak",
+        "origins-kombo:key/use",
+        "origins-kombo:key/attack",
+
+        "example:kombos/simple_kombo"
+    ],
+    "icon": {
+        "item": "minecraft:white_wool"
+    },
+    "description": "This is an origin for testing purposes"
+}
