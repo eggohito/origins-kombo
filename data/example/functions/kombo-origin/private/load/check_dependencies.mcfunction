@@ -6,13 +6,13 @@
 
 
 #   Add a variable that indicates the pack is currently checking for dependencies
-scoreboard players set #origins-kombo.example.chk_dep load.status 1
+scoreboard players set #origins-kombo.example.chk_dep load 1
 
 
 #   Check if the origins-kombo datapack library is loaded
-execute if score origins-kombo.major load.status matches 3.. if score origins-kombo.minor load.status matches 1.. run function example:kombo-origin/private/load
+execute if score origins-kombo.major load matches 3.. if score origins-kombo.minor load matches 1.. run function example:kombo-origin/private/load
 
-execute unless score origins-kombo.major load.status matches 3.. if score origins-kombo.minor load.status matches 1.. run function example:kombo-origin/uninstall
+execute unless score origins-kombo.major load matches 3.. if score origins-kombo.minor load matches 1.. run function example:kombo-origin/uninstall
 
 
-scoreboard players reset #origins-kombo.example.chk_dep load.status
+scoreboard players reset #origins-kombo.example.chk_dep load
